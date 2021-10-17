@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      //? Folders
+      "@components/*": ["src/components/*"],
+      "@content/*": ["src/content/*"],
+      "@data/*": ["src/data/*"],
+      "@forms/*": ["src/forms/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@libs/*": ["src/libs/*"],
+      "@panel/*": ["src/panel/*"],
+      "@public/*": ["public/*"],
+      "@services/*": ["src/services/*"],
+      "@slices/*": ["src/slices/*"],
+      "@utils/*": ["src/utils/*"],
+      "@views/*": ["src/views/*"],
+      //? Files
+      "#defs": ["src/ts/index.ts"],
+      "#graphql": ["src/graphql/index.tsx"],
+      "#project": ["src/project.config.ts"],
+      "#modal": ["src/modal/index.ts"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}
