@@ -169,7 +169,8 @@ export const HeroSlice: FunctionComponent<HeroSliceProps> = ({
                 width='1'
                 height='1'
               >
-                <use
+                <motion.use
+                  style={{ opacity: imageFade }}
                   xlinkHref='#cross'
                   transform='translate(-0.00202224) scale(0.00052294 0.00078125)'
                 />
@@ -180,20 +181,19 @@ export const HeroSlice: FunctionComponent<HeroSliceProps> = ({
                 width='1'
                 height='1'
               >
-                <use
+                <motion.use
+                  style={{ opacity: imageFade }}
                   xlinkHref='#girl'
                   transform='scale(0.000520833 0.00078064)'
                 />
               </pattern>
-              <motion.image
-                style={{ opacity: imageFade }}
+              <image
                 id='cross'
                 width='1920'
                 height='1280'
                 xlinkHref='/cross-bg.jpg'
               />
-              <motion.image
-                style={{ opacity: imageFade }}
+              <image
                 id='girl'
                 width='1920'
                 height='1281'
