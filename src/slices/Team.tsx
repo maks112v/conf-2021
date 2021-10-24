@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import { RiUser2Line } from 'react-icons/ri';
 
 interface TeamSliceProps {}
 
@@ -6,12 +7,12 @@ const people = [
   {
     name: 'Vladimir Minyakov',
     role: 'Kansas City, KA',
-    imageUrl: '/speakers/vladimir-minyakov.jpg',
+    imageUrl: '/speakers/vladimir-minyakov.png',
   },
   {
     name: 'Mikhail Sysoev',
     role: 'Ukraine',
-    imageUrl: '',
+    imageUrl: '/speakers/mikhail-sysoev.png',
   },
   {
     name: 'Mikhail Golubin',
@@ -21,12 +22,12 @@ const people = [
   {
     name: 'Oleg Artemyev',
     role: 'Harrisonburg, VA',
-    imageUrl: '',
+    imageUrl: '/speakers/oleg-artemyev.jpg',
   },
   {
     name: 'Anton Artemyev',
     role: 'Harrisonburg, VA',
-    imageUrl: '',
+    imageUrl: '/speakers/anton-artemyev.png',
   },
 ];
 
@@ -53,11 +54,17 @@ export const TeamSlice: FunctionComponent<TeamSliceProps> = ({ children }) => {
               {people.map((person) => (
                 <li key={person.name}>
                   <div className='flex items-center space-x-4 lg:space-x-6'>
-                    <img
-                      className='w-16 h-16 rounded-full lg:w-20 lg:h-20'
-                      src={person.imageUrl}
-                      alt=''
-                    />
+                    {person.imageUrl ? (
+                      <img
+                        className='w-16 h-16 rounded-full shadow lg:w-20 lg:h-20 bg-gray-50'
+                        src={person.imageUrl}
+                        alt=''
+                      />
+                    ) : (
+                      <div className='flex items-center justify-center w-16 h-16 rounded-full shadow bg-gray-50 lg:w-20 lg:h-20'>
+                        <RiUser2Line className='w-8 h-8 text-gray-700' />
+                      </div>
+                    )}
                     <div className='space-y-1 text-lg font-medium leading-6'>
                       <h3>{person.name}</h3>
                       <p className='text-blue-500'>{person.role}</p>
