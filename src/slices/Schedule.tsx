@@ -32,7 +32,6 @@ export const ScheduleSlice: FunctionComponent<ScheduleSliceProps> = ({}) => {
                   selected === tab?.date ? 'border-blue-400' : '',
                   'whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm flex flex-col items-center'
                 )}
-                aria-current={tab.current ? 'page' : undefined}
               >
                 <span
                   className={classNames(
