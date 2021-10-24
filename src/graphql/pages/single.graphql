@@ -1,0 +1,11 @@
+query Page($slug: String!) {
+  page(where: { slug: $slug }) {
+    title
+    slices {
+      ...Theme
+      ...Schedule
+      ...Seo
+      ...Speakers
+    }
+  }
+}

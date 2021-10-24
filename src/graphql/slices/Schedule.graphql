@@ -1,0 +1,9 @@
+fragment Schedule on ScheduleSlice {
+  id
+  events {
+    id
+    title
+    subtitle
+    start
+  }
+}

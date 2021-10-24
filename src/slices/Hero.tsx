@@ -3,15 +3,9 @@ import { motion, useTransform, useViewportScroll } from 'framer-motion';
 import React, { FunctionComponent } from 'react';
 import { RiArrowDownSLine } from 'react-icons/ri';
 
-interface HeroSliceProps {
-  hasAnimated: boolean;
-  setHasAnimated: React.Dispatch<React.SetStateAction<boolean>>;
-}
+interface HeroSliceProps {}
 
-export const HeroSlice: FunctionComponent<HeroSliceProps> = ({
-  hasAnimated,
-  setHasAnimated,
-}) => {
+export const HeroSlice: FunctionComponent<HeroSliceProps> = () => {
   const { height } = useViewport(300);
   const { scrollY } = useViewportScroll();
 
