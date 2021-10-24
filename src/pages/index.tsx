@@ -1,5 +1,6 @@
 import { FooterSlice } from '@slices/Footer';
 import { HeroSlice } from '@slices/Hero';
+import { IntroVideoSection } from '@slices/Intro';
 import { TeamSlice } from '@slices/Team';
 import { NextSeo } from 'next-seo';
 import React, { FunctionComponent, useState } from 'react';
@@ -22,6 +23,7 @@ const HomePage: FunctionComponent = () => {
         }}
       />
       <HeroSlice hasAnimated={hasAnimated} setHasAnimated={setHasAnimated} />
+      <IntroVideoSection />
       <TeamSlice />
       <FooterSlice />
     </>

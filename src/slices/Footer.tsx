@@ -1,11 +1,6 @@
 import Link from 'next/link';
 import React, { FunctionComponent } from 'react';
-import {
-  RiFacebookCircleFill,
-  RiGithubFill,
-  RiInstagramFill,
-  RiTwitterFill,
-} from 'react-icons/ri';
+import { RiGithubFill, RiInstagramFill } from 'react-icons/ri';
 
 interface FooterSliceProps {}
 
@@ -34,31 +29,19 @@ const navigation = {
   ],
   social: [
     {
-      name: 'Facebook',
-      href: '#',
-      icon: RiFacebookCircleFill,
-    },
-    {
       name: 'Instagram',
-      href: '#',
+      href: 'https://www.instagram.com/molodezh/',
       icon: RiInstagramFill,
     },
     {
-      name: 'Twitter',
-      href: '#',
-      icon: RiTwitterFill,
-    },
-    {
       name: 'GitHub',
-      href: '#',
+      href: 'https://github.com/maks112v/conf-2021',
       icon: RiGithubFill,
     },
   ],
 };
 
-export const FooterSlice: FunctionComponent<FooterSliceProps> = ({
-  children,
-}) => {
+export const FooterSlice: FunctionComponent<FooterSliceProps> = () => {
   return (
     <footer className='bg-white' aria-labelledby='footer-heading'>
       <h2 id='footer-heading' className='sr-only'>
@@ -75,6 +58,8 @@ export const FooterSlice: FunctionComponent<FooterSliceProps> = ({
             <div className='flex space-x-6'>
               {navigation.social.map((item) => (
                 <a
+                  target='_blank'
+                  rel='noreferrer'
                   key={item.name}
                   href={item.href}
                   className='text-gray-400 hover:text-gray-500'
@@ -85,79 +70,42 @@ export const FooterSlice: FunctionComponent<FooterSliceProps> = ({
               ))}
             </div>
           </div>
-          <div className='grid grid-cols-2 gap-8 mt-12 xl:mt-0 xl:col-span-2'>
-            <div className='md:grid md:grid-cols-2 md:gap-8'>
-              <div>
-                {/* <h3 className='text-sm font-semibold tracking-wider text-gray-400 uppercase'>
-                  Solutions
-                </h3>
-                <ul role='list' className='mt-4 space-y-4'>
-                  {navigation.solutions.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className='text-base text-gray-500 hover:text-gray-900'
-                      >
+          <div className='flex-1' />
+          <div className='grid gap-8 mt-12 sm:grid-cols-2 xl:mt-0'>
+            <div>
+              <h3 className='text-sm font-semibold tracking-wider text-gray-400 uppercase'>
+                Pages
+              </h3>
+              <ul role='list' className='mt-4 space-y-4'>
+                {navigation.pages.map((item) => (
+                  <li key={item.name}>
+                    <Link href={item?.href} passHref>
+                      <a className='text-base text-gray-500 hover:text-gray-900'>
                         {item.name}
                       </a>
-                    </li>
-                  ))}
-                </ul> */}
-              </div>
-              <div className='mt-12 md:mt-0'>
-                {/* <h3 className='text-sm font-semibold tracking-wider text-gray-400 uppercase'>
-                  Support
-                </h3>
-                <ul role='list' className='mt-4 space-y-4'>
-                  {navigation.support.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className='text-base text-gray-500 hover:text-gray-900'
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul> */}
-              </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className='md:grid md:grid-cols-2 md:gap-8'>
-              <div>
-                <h3 className='text-sm font-semibold tracking-wider text-gray-400 uppercase'>
-                  Pages
-                </h3>
-                <ul role='list' className='mt-4 space-y-4'>
-                  {navigation.pages.map((item) => (
-                    <li key={item.name}>
-                      <Link href={item?.href} passHref>
-                        <a className='text-base text-gray-500 hover:text-gray-900'>
-                          {item.name}
-                        </a>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className='mt-12 md:mt-0'>
-                <h3 className='text-sm font-semibold tracking-wider text-gray-400 uppercase'>
-                  Past Conferences
-                </h3>
-                <ul role='list' className='mt-4 space-y-4'>
-                  {navigation.past.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className='text-base text-gray-500 hover:text-gray-900'
-                        target='_blank'
-                        rel='noreferrer'
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className='mt-12 md:mt-0'>
+              <h3 className='text-sm font-semibold tracking-wider text-gray-400 uppercase'>
+                Past Conferences
+              </h3>
+              <ul role='list' className='mt-4 space-y-4'>
+                {navigation.past.map((item) => (
+                  <li key={item.name}>
+                    <a
+                      href={item.href}
+                      className='text-base text-gray-500 hover:text-gray-900'
+                      target='_blank'
+                      rel='noreferrer'
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
