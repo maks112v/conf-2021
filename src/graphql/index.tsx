@@ -787,6 +787,7 @@ export type Event = Node & {
   createdBy?: Maybe<User>;
   /** Get the document in other stages */
   documentInStages: Array<Event>;
+  endTime?: Maybe<Scalars['DateTime']>;
   /** List of Event versions */
   history: Array<Version>;
   /** The unique identifier */
@@ -797,7 +798,7 @@ export type Event = Node & {
   publishedBy?: Maybe<User>;
   /** System stage field */
   stage: Stage;
-  start?: Maybe<Scalars['DateTime']>;
+  startTime?: Maybe<Scalars['DateTime']>;
   subtitle?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   /** The time the document was updated */
@@ -855,7 +856,8 @@ export type EventConnection = {
 export type EventCreateInput = {
   ckv5qd5q93www01zd68ayb8af?: Maybe<ScheduleSliceCreateManyInlineInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  start?: Maybe<Scalars['DateTime']>;
+  endTime?: Maybe<Scalars['DateTime']>;
+  startTime?: Maybe<Scalars['DateTime']>;
   subtitle?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -910,6 +912,21 @@ export type EventManyWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
   createdBy?: Maybe<UserWhereInput>;
+  endTime?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  endTime_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  endTime_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  endTime_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  endTime_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  endTime_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  endTime_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  endTime_not_in?: Maybe<Array<Scalars['DateTime']>>;
   id?: Maybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: Maybe<Scalars['ID']>;
@@ -945,21 +962,21 @@ export type EventManyWhereInput = {
   /** All values that are not contained in given list. */
   publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
   publishedBy?: Maybe<UserWhereInput>;
-  start?: Maybe<Scalars['DateTime']>;
+  startTime?: Maybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
-  start_gt?: Maybe<Scalars['DateTime']>;
+  startTime_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
-  start_gte?: Maybe<Scalars['DateTime']>;
+  startTime_gte?: Maybe<Scalars['DateTime']>;
   /** All values that are contained in given list. */
-  start_in?: Maybe<Array<Scalars['DateTime']>>;
+  startTime_in?: Maybe<Array<Scalars['DateTime']>>;
   /** All values less than the given value. */
-  start_lt?: Maybe<Scalars['DateTime']>;
+  startTime_lt?: Maybe<Scalars['DateTime']>;
   /** All values less than or equal the given value. */
-  start_lte?: Maybe<Scalars['DateTime']>;
+  startTime_lte?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
-  start_not?: Maybe<Scalars['DateTime']>;
+  startTime_not?: Maybe<Scalars['DateTime']>;
   /** All values that are not contained in given list. */
-  start_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  startTime_not_in?: Maybe<Array<Scalars['DateTime']>>;
   subtitle?: Maybe<Scalars['String']>;
   /** All values containing the given string. */
   subtitle_contains?: Maybe<Scalars['String']>;
@@ -1019,12 +1036,14 @@ export type EventManyWhereInput = {
 export enum EventOrderByInput {
   CreatedAtAsc = 'createdAt_ASC',
   CreatedAtDesc = 'createdAt_DESC',
+  EndTimeAsc = 'endTime_ASC',
+  EndTimeDesc = 'endTime_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
-  StartAsc = 'start_ASC',
-  StartDesc = 'start_DESC',
+  StartTimeAsc = 'startTime_ASC',
+  StartTimeDesc = 'startTime_DESC',
   SubtitleAsc = 'subtitle_ASC',
   SubtitleDesc = 'subtitle_DESC',
   TitleAsc = 'title_ASC',
@@ -1035,7 +1054,8 @@ export enum EventOrderByInput {
 
 export type EventUpdateInput = {
   ckv5qd5q93www01zd68ayb8af?: Maybe<ScheduleSliceUpdateManyInlineInput>;
-  start?: Maybe<Scalars['DateTime']>;
+  endTime?: Maybe<Scalars['DateTime']>;
+  startTime?: Maybe<Scalars['DateTime']>;
   subtitle?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
 };
@@ -1058,7 +1078,8 @@ export type EventUpdateManyInlineInput = {
 };
 
 export type EventUpdateManyInput = {
-  start?: Maybe<Scalars['DateTime']>;
+  endTime?: Maybe<Scalars['DateTime']>;
+  startTime?: Maybe<Scalars['DateTime']>;
   subtitle?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
 };
@@ -1132,6 +1153,21 @@ export type EventWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
   createdBy?: Maybe<UserWhereInput>;
+  endTime?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  endTime_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  endTime_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  endTime_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  endTime_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  endTime_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  endTime_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  endTime_not_in?: Maybe<Array<Scalars['DateTime']>>;
   id?: Maybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: Maybe<Scalars['ID']>;
@@ -1167,21 +1203,21 @@ export type EventWhereInput = {
   /** All values that are not contained in given list. */
   publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
   publishedBy?: Maybe<UserWhereInput>;
-  start?: Maybe<Scalars['DateTime']>;
+  startTime?: Maybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
-  start_gt?: Maybe<Scalars['DateTime']>;
+  startTime_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
-  start_gte?: Maybe<Scalars['DateTime']>;
+  startTime_gte?: Maybe<Scalars['DateTime']>;
   /** All values that are contained in given list. */
-  start_in?: Maybe<Array<Scalars['DateTime']>>;
+  startTime_in?: Maybe<Array<Scalars['DateTime']>>;
   /** All values less than the given value. */
-  start_lt?: Maybe<Scalars['DateTime']>;
+  startTime_lt?: Maybe<Scalars['DateTime']>;
   /** All values less than or equal the given value. */
-  start_lte?: Maybe<Scalars['DateTime']>;
+  startTime_lte?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
-  start_not?: Maybe<Scalars['DateTime']>;
+  startTime_not?: Maybe<Scalars['DateTime']>;
   /** All values that are not contained in given list. */
-  start_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  startTime_not_in?: Maybe<Array<Scalars['DateTime']>>;
   subtitle?: Maybe<Scalars['String']>;
   /** All values containing the given string. */
   subtitle_contains?: Maybe<Scalars['String']>;
@@ -4051,6 +4087,7 @@ export type ScheduleSlice = Node & {
   publishedBy?: Maybe<User>;
   /** System stage field */
   stage: Stage;
+  title?: Maybe<Scalars['String']>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
@@ -4129,6 +4166,7 @@ export type ScheduleSliceCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   events?: Maybe<EventCreateManyInlineInput>;
   pages?: Maybe<PageCreateManyInlineInput>;
+  title?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -4222,6 +4260,25 @@ export type ScheduleSliceManyWhereInput = {
   /** All values that are not contained in given list. */
   publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
   publishedBy?: Maybe<UserWhereInput>;
+  title?: Maybe<Scalars['String']>;
+  /** All values containing the given string. */
+  title_contains?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  title_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  title_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  title_not?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  title_not_contains?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  title_starts_with?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
@@ -4247,6 +4304,8 @@ export enum ScheduleSliceOrderByInput {
   IdDesc = 'id_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
   UpdatedAtDesc = 'updatedAt_DESC'
 }
@@ -4254,6 +4313,7 @@ export enum ScheduleSliceOrderByInput {
 export type ScheduleSliceUpdateInput = {
   events?: Maybe<EventUpdateManyInlineInput>;
   pages?: Maybe<PageUpdateManyInlineInput>;
+  title?: Maybe<Scalars['String']>;
 };
 
 export type ScheduleSliceUpdateManyInlineInput = {
@@ -4274,8 +4334,7 @@ export type ScheduleSliceUpdateManyInlineInput = {
 };
 
 export type ScheduleSliceUpdateManyInput = {
-  /** No fields in updateMany data input */
-  _?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
 };
 
 export type ScheduleSliceUpdateManyWithNestedWhereInput = {
@@ -4388,6 +4447,25 @@ export type ScheduleSliceWhereInput = {
   /** All values that are not contained in given list. */
   publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
   publishedBy?: Maybe<UserWhereInput>;
+  title?: Maybe<Scalars['String']>;
+  /** All values containing the given string. */
+  title_contains?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  title_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  title_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  title_not?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  title_not_contains?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  title_starts_with?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
@@ -6757,9 +6835,9 @@ export type PageQueryVariables = Exact<{
 }>;
 
 
-export type PageQuery = { __typename?: 'Query', page?: { __typename?: 'Page', title?: string | null | undefined, slices: Array<{ __typename?: 'HeroSlice' } | { __typename?: 'ScheduleSlice', id: string, events: Array<{ __typename?: 'Event', id: string, title?: string | null | undefined, subtitle?: string | null | undefined, start?: any | null | undefined }> } | { __typename?: 'SeoSlice', id: string, title?: string | null | undefined, images: Array<{ __typename?: 'Asset', id: string, height?: number | null | undefined, width?: number | null | undefined, url: string }> } | { __typename?: 'SpeakersSlice', id: string, subtitle?: string | null | undefined, title?: string | null | undefined, speakers: Array<{ __typename?: 'Speaker', id: string, name?: string | null | undefined, location?: string | null | undefined, image?: { __typename?: 'Asset', url: string, width?: number | null | undefined, height?: number | null | undefined } | null | undefined }> } | { __typename?: 'ThemeSlice', id: string, embed?: string | null | undefined, title?: string | null | undefined, subtitle?: string | null | undefined }> } | null | undefined };
+export type PageQuery = { __typename?: 'Query', page?: { __typename?: 'Page', title?: string | null | undefined, slices: Array<{ __typename?: 'HeroSlice' } | { __typename?: 'ScheduleSlice', id: string, title?: string | null | undefined, events: Array<{ __typename?: 'Event', id: string, title?: string | null | undefined, subtitle?: string | null | undefined, startTime?: any | null | undefined, endTime?: any | null | undefined }> } | { __typename?: 'SeoSlice', id: string, title?: string | null | undefined, images: Array<{ __typename?: 'Asset', id: string, height?: number | null | undefined, width?: number | null | undefined, url: string }> } | { __typename?: 'SpeakersSlice', id: string, subtitle?: string | null | undefined, title?: string | null | undefined, speakers: Array<{ __typename?: 'Speaker', id: string, name?: string | null | undefined, location?: string | null | undefined, image?: { __typename?: 'Asset', url: string, width?: number | null | undefined, height?: number | null | undefined } | null | undefined }> } | { __typename?: 'ThemeSlice', id: string, embed?: string | null | undefined, title?: string | null | undefined, subtitle?: string | null | undefined }> } | null | undefined };
 
-export type ScheduleFragment = { __typename?: 'ScheduleSlice', id: string, events: Array<{ __typename?: 'Event', id: string, title?: string | null | undefined, subtitle?: string | null | undefined, start?: any | null | undefined }> };
+export type ScheduleFragment = { __typename?: 'ScheduleSlice', id: string, title?: string | null | undefined, events: Array<{ __typename?: 'Event', id: string, title?: string | null | undefined, subtitle?: string | null | undefined, startTime?: any | null | undefined, endTime?: any | null | undefined }> };
 
 export type SeoFragment = { __typename?: 'SeoSlice', id: string, title?: string | null | undefined, images: Array<{ __typename?: 'Asset', id: string, height?: number | null | undefined, width?: number | null | undefined, url: string }> };
 
@@ -6770,11 +6848,13 @@ export type ThemeFragment = { __typename?: 'ThemeSlice', id: string, embed?: str
 export const ScheduleFragmentDoc = gql`
     fragment Schedule on ScheduleSlice {
   id
+  title
   events {
     id
     title
     subtitle
-    start
+    startTime
+    endTime
   }
 }
     `;

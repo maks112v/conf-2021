@@ -5,18 +5,6 @@ import { RiGithubFill, RiInstagramFill } from 'react-icons/ri';
 interface FooterSliceProps {}
 
 const navigation = {
-  solutions: [
-    { name: 'Marketing', href: '#' },
-    { name: 'Analytics', href: '#' },
-    { name: 'Commerce', href: '#' },
-    { name: 'Insights', href: '#' },
-  ],
-  support: [
-    { name: 'Pricing', href: '#' },
-    { name: 'Documentation', href: '#' },
-    { name: 'Guides', href: '#' },
-    { name: 'API Status', href: '#' },
-  ],
   pages: [
     { name: 'Home', href: '/' },
     { name: 'Live Stream', href: '/live' },

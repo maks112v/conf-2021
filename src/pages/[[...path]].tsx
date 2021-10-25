@@ -6,6 +6,7 @@ import {
   PagesQuery,
 } from '#graphql';
 import { graphClient } from '@services/graphcms';
+import { FooterSlice } from '@slices/Footer';
 import { SliceResolver } from '@slices/Resolver';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import React, { FunctionComponent } from 'react';
@@ -15,11 +16,11 @@ interface PageBuilderProps extends Page {}
 const PageBuilder: FunctionComponent<PageBuilderProps> = ({
   title,
   slices,
-  children,
 }) => {
   return (
     <>
       <SliceResolver slices={slices} />
+      <FooterSlice />
     </>
   );
 };
@@ -34,8 +35,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: pages?.data?.pages?.map((item) => ({
       params: {
-        id: item?.id,
-        path: item?.slug?.replace('/', '')?.split('/'),
+        path: item?.slug?.split('/')?.filter((item) => !!item),
       },
     })),
     fallback: false,

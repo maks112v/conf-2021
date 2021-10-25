@@ -1,9 +1,11 @@
 fragment Schedule on ScheduleSlice {
   id
+  title
   events {
     id
     title
     subtitle
-    start
+    startTime
+    endTime
   }
 }
