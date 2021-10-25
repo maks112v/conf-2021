@@ -19,6 +19,7 @@ const PageBuilder: FunctionComponent<PageBuilderProps> = ({
 }) => {
   return (
     <>
+      {/* <Navbar /> */}
       <SliceResolver slices={slices} />
       <FooterSlice />
     </>
