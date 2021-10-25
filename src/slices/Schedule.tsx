@@ -120,7 +120,7 @@ export const ScheduleSlice: FunctionComponent<ScheduleSliceProps> = ({
               key={item?.id}
               className={classNames(
                 isSoon ? 'border-yellow-400' : isBetween && 'border-blue-400',
-                'p-4 space-y-3 border-2 flex flex-col border-gray-200 rounded'
+                'p-4 space-y-4 border-2 flex flex-col border-gray-200 rounded'
               )}
             >
               {isBetween ? (
@@ -140,10 +140,10 @@ export const ScheduleSlice: FunctionComponent<ScheduleSliceProps> = ({
                   </div>
                 )
               )}
-              <h4 className='text-2xl font-bold text-gray-900'>
-                {item?.title}
-              </h4>
-              <div className='flex-1'>
+              <div className='flex flex-col flex-1 space-y-1'>
+                <h4 className='text-2xl font-bold text-gray-900'>
+                  {item?.title}
+                </h4>
                 {item?.subtitle && (
                   <p className='text-gray-600'>{item?.subtitle}</p>
                 )}
