@@ -40,8 +40,8 @@ export const FooterSlice: FunctionComponent<FooterSliceProps> = () => {
           <div className='space-y-8 xl:col-span-1'>
             <img className='h-10' src='/logo.svg' alt={`God & Me`} />
             <p className='text-base text-gray-500'>
-              Making the world a better place through constructing elegant
-              hierarchies.
+              God & Me. <b>This November.</b> <br /> Come and let&apos;s grow
+              together.
             </p>
             <div className='flex space-x-6'>
               {navigation.social.map((item) => (
