@@ -12,8 +12,8 @@ const navigation = {
     { name: 'Speakers', href: '/#speakers' },
   ],
   past: [
-    { name: '2020 The Fight Within', href: 'https://2020.confva.com' },
-    { name: '2019 The Rooted Life', href: 'https://2019.confva.com' },
+    { name: '2020: The Fight Within', href: 'https://2020.confva.com' },
+    { name: '2019: The Rooted Life', href: 'https://2019.confva.com' },
   ],
   social: [
     {
