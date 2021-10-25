@@ -1,3 +1,4 @@
+import splitbee from '@splitbee/web';
 import Link from 'next/link';
 import React, { FunctionComponent } from 'react';
 import { RiGithubFill, RiInstagramFill } from 'react-icons/ri';
@@ -46,6 +47,12 @@ export const FooterSlice: FunctionComponent<FooterSliceProps> = () => {
             <div className='flex space-x-6'>
               {navigation.social.map((item) => (
                 <a
+                  onClick={() =>
+                    splitbee.track('social', {
+                      name: item?.name,
+                      href: item?.href,
+                    })
+                  }
                   target='_blank'
                   rel='noreferrer'
                   key={item.name}
@@ -84,6 +91,11 @@ export const FooterSlice: FunctionComponent<FooterSliceProps> = () => {
                 {navigation.past.map((item) => (
                   <li key={item.name}>
                     <a
+                      onClick={() =>
+                        splitbee.track('past_conf', {
+                          ...item,
+                        })
+                      }
                       href={item.href}
                       className='text-base text-gray-500 hover:text-gray-900'
                       target='_blank'
