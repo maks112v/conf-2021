@@ -109,8 +109,6 @@ export const ScheduleSlice: FunctionComponent<ScheduleSliceProps> = ({
 
           const isBetween = dayjs().isBetween(item?.startTime, endTime);
 
-          console.log(item?.endTime);
-
           const diff = dayjs(item?.startTime).diff(dayjs(), 'minutes');
 
           const isSoon = diff > 0 && diff < 60;
