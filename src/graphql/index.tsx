@@ -1331,6 +1331,7 @@ export type HeroSlicePagesArgs = {
   last?: Maybe<Scalars['Int']>;
   locales?: Maybe<Array<Locale>>;
   skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<PageWhereInput>;
 };
 
 
@@ -4133,6 +4134,7 @@ export type ScheduleSlicePagesArgs = {
   last?: Maybe<Scalars['Int']>;
   locales?: Maybe<Array<Locale>>;
   skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<PageWhereInput>;
 };
 
 
@@ -4556,6 +4558,7 @@ export type SeoSlicePagesArgs = {
   last?: Maybe<Scalars['Int']>;
   locales?: Maybe<Array<Locale>>;
   skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<PageWhereInput>;
 };
 
 
@@ -5448,6 +5451,7 @@ export type SpeakersSlicePagesArgs = {
   last?: Maybe<Scalars['Int']>;
   locales?: Maybe<Array<Locale>>;
   skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<PageWhereInput>;
 };
 
 
@@ -5928,6 +5932,7 @@ export type ThemeSlicePagesArgs = {
   last?: Maybe<Scalars['Int']>;
   locales?: Maybe<Array<Locale>>;
   skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<PageWhereInput>;
 };
 
 
