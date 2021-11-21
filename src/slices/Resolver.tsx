@@ -2,6 +2,7 @@ import { PageSlices } from '#graphql';
 import { NextSeo } from 'next-seo';
 import React, { FunctionComponent } from 'react';
 import { HeroSlice } from './Hero';
+import { LiveSlice } from './Live';
 import { ScheduleSlice } from './Schedule';
 import { SpeakersSlice } from './Speakers';
 import { ThemeSlice } from './Theme';
@@ -38,6 +39,8 @@ export const SliceResolver: FunctionComponent<SliceResolverProps> = ({
             return <ScheduleSlice {...slice} />;
           case 'ThemeSlice':
             return <ThemeSlice {...slice} />;
+          case 'LiveSlice':
+            return <LiveSlice {...slice} />;
           default:
             return null;
         }

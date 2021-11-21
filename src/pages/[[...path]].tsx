@@ -17,6 +17,7 @@ const PageBuilder: FunctionComponent<PageBuilderProps> = ({
   title,
   slices,
 }) => {
+  console.log(slices);
   return (
     <>
       {/* <Navbar /> */}
