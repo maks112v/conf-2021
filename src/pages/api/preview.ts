@@ -17,23 +17,31 @@ export default async function handler(
 
   graphClient.setLink(link);
 
-  const pageRes = await graphClient.query<PageQuery, PageQueryVariables>({
-    query: PageDocument,
-    variables: {
-      slug: req.query.slug as string,
-    },
-  });
+  if (req?.query?.type === 'page') {
+    const pageRes = await graphClient.query<PageQuery, PageQueryVariables>({
+      query: PageDocument,
+      variables: {
+        slug: req.query.slug as string,
+      },
+    });
 
-  console.log(pageRes);
+    console.log(pageRes);
 
-  if (!pageRes.data.page) {
-    return res.status(404).json({ message: 'Page Not Found' });
+    if (!pageRes.data.page) {
+      return res.status(404).json({ message: 'Page Not Found' });
+    }
+
+    res.setPreviewData({
+      slug: pageRes.data.page?.slug,
+    });
+
+    res.writeHead(307, {
+      Location: `/${pageRes?.data?.page?.slug
+        ?.split('/')
+        ?.filter((item) => !!item)}`,
+    });
+    res.end();
   }
 
-  res.setPreviewData({});
-
-  res.writeHead(307, {
-    Location: pageRes?.data?.page?.slug?.split('/')?.filter((item) => !!item),
-  });
-  res.end();
+  throw new Error('Invalid Type');
 }

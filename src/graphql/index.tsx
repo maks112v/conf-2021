@@ -57,6 +57,7 @@ export type Asset = Node & {
   locale: Locale;
   /** Get the other localizations for this document */
   localizations: Array<Asset>;
+  logoNavbarMatter: Array<NavbarMatter>;
   /** The mime type of the file */
   mimeType?: Maybe<Scalars['String']>;
   /** The time the document was published. Null on documents in draft stage. */
@@ -141,6 +142,19 @@ export type AssetLocalizationsArgs = {
 
 
 /** Asset system model */
+export type AssetLogoNavbarMatterArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+  orderBy?: Maybe<NavbarMatterOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<NavbarMatterWhereInput>;
+};
+
+
+/** Asset system model */
 export type AssetPublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
@@ -207,6 +221,7 @@ export type AssetCreateInput = {
   imagesSeoSlice?: Maybe<SeoSliceCreateManyInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<AssetCreateLocalizationsInput>;
+  logoNavbarMatter?: Maybe<NavbarMatterCreateManyInlineInput>;
   mimeType?: Maybe<Scalars['String']>;
   size?: Maybe<Scalars['Float']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -309,6 +324,9 @@ export type AssetManyWhereInput = {
   imagesSeoSlice_every?: Maybe<SeoSliceWhereInput>;
   imagesSeoSlice_none?: Maybe<SeoSliceWhereInput>;
   imagesSeoSlice_some?: Maybe<SeoSliceWhereInput>;
+  logoNavbarMatter_every?: Maybe<NavbarMatterWhereInput>;
+  logoNavbarMatter_none?: Maybe<NavbarMatterWhereInput>;
+  logoNavbarMatter_some?: Maybe<NavbarMatterWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
@@ -385,6 +403,7 @@ export type AssetUpdateInput = {
   imagesSeoSlice?: Maybe<SeoSliceUpdateManyInlineInput>;
   /** Manage document localizations */
   localizations?: Maybe<AssetUpdateLocalizationsInput>;
+  logoNavbarMatter?: Maybe<NavbarMatterUpdateManyInlineInput>;
   mimeType?: Maybe<Scalars['String']>;
   size?: Maybe<Scalars['Float']>;
   width?: Maybe<Scalars['Float']>;
@@ -612,6 +631,9 @@ export type AssetWhereInput = {
   imagesSeoSlice_every?: Maybe<SeoSliceWhereInput>;
   imagesSeoSlice_none?: Maybe<SeoSliceWhereInput>;
   imagesSeoSlice_some?: Maybe<SeoSliceWhereInput>;
+  logoNavbarMatter_every?: Maybe<NavbarMatterWhereInput>;
+  logoNavbarMatter_none?: Maybe<NavbarMatterWhereInput>;
+  logoNavbarMatter_some?: Maybe<NavbarMatterWhereInput>;
   mimeType?: Maybe<Scalars['String']>;
   /** All values containing the given string. */
   mimeType_contains?: Maybe<Scalars['String']>;
@@ -1728,6 +1750,7 @@ export type LiveSlice = Node & {
   createdBy?: Maybe<User>;
   /** Get the document in other stages */
   documentInStages: Array<LiveSlice>;
+  embed?: Maybe<Scalars['String']>;
   /** List of LiveSlice versions */
   history: Array<Version>;
   /** The unique identifier */
@@ -1817,6 +1840,7 @@ export type LiveSliceConnection = {
 
 export type LiveSliceCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
+  embed?: Maybe<Scalars['String']>;
   pages?: Maybe<PageCreateManyInlineInput>;
   title?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -1871,6 +1895,25 @@ export type LiveSliceManyWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
   createdBy?: Maybe<UserWhereInput>;
+  embed?: Maybe<Scalars['String']>;
+  /** All values containing the given string. */
+  embed_contains?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  embed_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  embed_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  embed_not?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  embed_not_contains?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  embed_not_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  embed_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  embed_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  embed_starts_with?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: Maybe<Scalars['ID']>;
@@ -1952,6 +1995,8 @@ export type LiveSliceManyWhereInput = {
 export enum LiveSliceOrderByInput {
   CreatedAtAsc = 'createdAt_ASC',
   CreatedAtDesc = 'createdAt_DESC',
+  EmbedAsc = 'embed_ASC',
+  EmbedDesc = 'embed_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
@@ -1963,6 +2008,7 @@ export enum LiveSliceOrderByInput {
 }
 
 export type LiveSliceUpdateInput = {
+  embed?: Maybe<Scalars['String']>;
   pages?: Maybe<PageUpdateManyInlineInput>;
   title?: Maybe<Scalars['String']>;
 };
@@ -1985,6 +2031,7 @@ export type LiveSliceUpdateManyInlineInput = {
 };
 
 export type LiveSliceUpdateManyInput = {
+  embed?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
 };
 
@@ -2057,6 +2104,25 @@ export type LiveSliceWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
   createdBy?: Maybe<UserWhereInput>;
+  embed?: Maybe<Scalars['String']>;
+  /** All values containing the given string. */
+  embed_contains?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  embed_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  embed_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  embed_not?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  embed_not_contains?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  embed_not_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  embed_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  embed_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  embed_starts_with?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: Maybe<Scalars['ID']>;
@@ -2179,6 +2245,8 @@ export type Mutation = {
   createHeroSlice?: Maybe<HeroSlice>;
   /** Create one liveSlice */
   createLiveSlice?: Maybe<LiveSlice>;
+  /** Create one navbarMatter */
+  createNavbarMatter?: Maybe<NavbarMatter>;
   /** Create one page */
   createPage?: Maybe<Page>;
   /** Create one scheduleSlice */
@@ -2187,6 +2255,8 @@ export type Mutation = {
   createScheduledRelease?: Maybe<ScheduledRelease>;
   /** Create one seoSlice */
   createSeoSlice?: Maybe<SeoSlice>;
+  /** Create one spacerAtom */
+  createSpacerAtom?: Maybe<SpacerAtom>;
   /** Create one speaker */
   createSpeaker?: Maybe<Speaker>;
   /** Create one speakersSlice */
@@ -2230,6 +2300,13 @@ export type Mutation = {
   /** Delete many LiveSlice documents, return deleted documents */
   deleteManyLiveSlicesConnection: LiveSliceConnection;
   /**
+   * Delete many NavbarMatter documents
+   * @deprecated Please use the new paginated many mutation (deleteManyNavbarMattersConnection)
+   */
+  deleteManyNavbarMatters: BatchPayload;
+  /** Delete many NavbarMatter documents, return deleted documents */
+  deleteManyNavbarMattersConnection: NavbarMatterConnection;
+  /**
    * Delete many Page documents
    * @deprecated Please use the new paginated many mutation (deleteManyPagesConnection)
    */
@@ -2251,6 +2328,13 @@ export type Mutation = {
   /** Delete many SeoSlice documents, return deleted documents */
   deleteManySeoSlicesConnection: SeoSliceConnection;
   /**
+   * Delete many SpacerAtom documents
+   * @deprecated Please use the new paginated many mutation (deleteManySpacerAtomsConnection)
+   */
+  deleteManySpacerAtoms: BatchPayload;
+  /** Delete many SpacerAtom documents, return deleted documents */
+  deleteManySpacerAtomsConnection: SpacerAtomConnection;
+  /**
    * Delete many Speaker documents
    * @deprecated Please use the new paginated many mutation (deleteManySpeakersConnection)
    */
@@ -2271,6 +2355,8 @@ export type Mutation = {
   deleteManyThemesSlice: BatchPayload;
   /** Delete many ThemeSlice documents, return deleted documents */
   deleteManyThemesSliceConnection: ThemeSliceConnection;
+  /** Delete one navbarMatter from _all_ existing stages. Returns deleted document. */
+  deleteNavbarMatter?: Maybe<NavbarMatter>;
   /** Delete one page from _all_ existing stages. Returns deleted document. */
   deletePage?: Maybe<Page>;
   /** Delete one scheduleSlice from _all_ existing stages. Returns deleted document. */
@@ -2281,6 +2367,8 @@ export type Mutation = {
   deleteScheduledRelease?: Maybe<ScheduledRelease>;
   /** Delete one seoSlice from _all_ existing stages. Returns deleted document. */
   deleteSeoSlice?: Maybe<SeoSlice>;
+  /** Delete one spacerAtom from _all_ existing stages. Returns deleted document. */
+  deleteSpacerAtom?: Maybe<SpacerAtom>;
   /** Delete one speaker from _all_ existing stages. Returns deleted document. */
   deleteSpeaker?: Maybe<Speaker>;
   /** Delete one speakersSlice from _all_ existing stages. Returns deleted document. */
@@ -2324,6 +2412,13 @@ export type Mutation = {
   /** Publish many LiveSlice documents */
   publishManyLiveSlicesConnection: LiveSliceConnection;
   /**
+   * Publish many NavbarMatter documents
+   * @deprecated Please use the new paginated many mutation (publishManyNavbarMattersConnection)
+   */
+  publishManyNavbarMatters: BatchPayload;
+  /** Publish many NavbarMatter documents */
+  publishManyNavbarMattersConnection: NavbarMatterConnection;
+  /**
    * Publish many Page documents
    * @deprecated Please use the new paginated many mutation (publishManyPagesConnection)
    */
@@ -2345,6 +2440,13 @@ export type Mutation = {
   /** Publish many SeoSlice documents */
   publishManySeoSlicesConnection: SeoSliceConnection;
   /**
+   * Publish many SpacerAtom documents
+   * @deprecated Please use the new paginated many mutation (publishManySpacerAtomsConnection)
+   */
+  publishManySpacerAtoms: BatchPayload;
+  /** Publish many SpacerAtom documents */
+  publishManySpacerAtomsConnection: SpacerAtomConnection;
+  /**
    * Publish many Speaker documents
    * @deprecated Please use the new paginated many mutation (publishManySpeakersConnection)
    */
@@ -2365,12 +2467,16 @@ export type Mutation = {
   publishManyThemesSlice: BatchPayload;
   /** Publish many ThemeSlice documents */
   publishManyThemesSliceConnection: ThemeSliceConnection;
+  /** Publish one navbarMatter */
+  publishNavbarMatter?: Maybe<NavbarMatter>;
   /** Publish one page */
   publishPage?: Maybe<Page>;
   /** Publish one scheduleSlice */
   publishScheduleSlice?: Maybe<ScheduleSlice>;
   /** Publish one seoSlice */
   publishSeoSlice?: Maybe<SeoSlice>;
+  /** Publish one spacerAtom */
+  publishSpacerAtom?: Maybe<SpacerAtom>;
   /** Publish one speaker */
   publishSpeaker?: Maybe<Speaker>;
   /** Publish one speakersSlice */
@@ -2385,12 +2491,16 @@ export type Mutation = {
   schedulePublishHeroSlice?: Maybe<HeroSlice>;
   /** Schedule to publish one liveSlice */
   schedulePublishLiveSlice?: Maybe<LiveSlice>;
+  /** Schedule to publish one navbarMatter */
+  schedulePublishNavbarMatter?: Maybe<NavbarMatter>;
   /** Schedule to publish one page */
   schedulePublishPage?: Maybe<Page>;
   /** Schedule to publish one scheduleSlice */
   schedulePublishScheduleSlice?: Maybe<ScheduleSlice>;
   /** Schedule to publish one seoSlice */
   schedulePublishSeoSlice?: Maybe<SeoSlice>;
+  /** Schedule to publish one spacerAtom */
+  schedulePublishSpacerAtom?: Maybe<SpacerAtom>;
   /** Schedule to publish one speaker */
   schedulePublishSpeaker?: Maybe<Speaker>;
   /** Schedule to publish one speakersSlice */
@@ -2405,12 +2515,16 @@ export type Mutation = {
   scheduleUnpublishHeroSlice?: Maybe<HeroSlice>;
   /** Unpublish one liveSlice from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishLiveSlice?: Maybe<LiveSlice>;
+  /** Unpublish one navbarMatter from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishNavbarMatter?: Maybe<NavbarMatter>;
   /** Unpublish one page from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishPage?: Maybe<Page>;
   /** Unpublish one scheduleSlice from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishScheduleSlice?: Maybe<ScheduleSlice>;
   /** Unpublish one seoSlice from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishSeoSlice?: Maybe<SeoSlice>;
+  /** Unpublish one spacerAtom from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishSpacerAtom?: Maybe<SpacerAtom>;
   /** Unpublish one speaker from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishSpeaker?: Maybe<Speaker>;
   /** Unpublish one speakersSlice from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -2454,6 +2568,13 @@ export type Mutation = {
   /** Find many LiveSlice documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyLiveSlicesConnection: LiveSliceConnection;
   /**
+   * Unpublish many NavbarMatter documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyNavbarMattersConnection)
+   */
+  unpublishManyNavbarMatters: BatchPayload;
+  /** Find many NavbarMatter documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyNavbarMattersConnection: NavbarMatterConnection;
+  /**
    * Unpublish many Page documents
    * @deprecated Please use the new paginated many mutation (unpublishManyPagesConnection)
    */
@@ -2475,6 +2596,13 @@ export type Mutation = {
   /** Find many SeoSlice documents that match criteria in specified stage and unpublish from target stages */
   unpublishManySeoSlicesConnection: SeoSliceConnection;
   /**
+   * Unpublish many SpacerAtom documents
+   * @deprecated Please use the new paginated many mutation (unpublishManySpacerAtomsConnection)
+   */
+  unpublishManySpacerAtoms: BatchPayload;
+  /** Find many SpacerAtom documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManySpacerAtomsConnection: SpacerAtomConnection;
+  /**
    * Unpublish many Speaker documents
    * @deprecated Please use the new paginated many mutation (unpublishManySpeakersConnection)
    */
@@ -2495,12 +2623,16 @@ export type Mutation = {
   unpublishManyThemesSlice: BatchPayload;
   /** Find many ThemeSlice documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyThemesSliceConnection: ThemeSliceConnection;
+  /** Unpublish one navbarMatter from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishNavbarMatter?: Maybe<NavbarMatter>;
   /** Unpublish one page from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishPage?: Maybe<Page>;
   /** Unpublish one scheduleSlice from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishScheduleSlice?: Maybe<ScheduleSlice>;
   /** Unpublish one seoSlice from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishSeoSlice?: Maybe<SeoSlice>;
+  /** Unpublish one spacerAtom from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishSpacerAtom?: Maybe<SpacerAtom>;
   /** Unpublish one speaker from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishSpeaker?: Maybe<Speaker>;
   /** Unpublish one speakersSlice from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -2544,6 +2676,13 @@ export type Mutation = {
   /** Update many LiveSlice documents */
   updateManyLiveSlicesConnection: LiveSliceConnection;
   /**
+   * Update many navbarMatters
+   * @deprecated Please use the new paginated many mutation (updateManyNavbarMattersConnection)
+   */
+  updateManyNavbarMatters: BatchPayload;
+  /** Update many NavbarMatter documents */
+  updateManyNavbarMattersConnection: NavbarMatterConnection;
+  /**
    * Update many pages
    * @deprecated Please use the new paginated many mutation (updateManyPagesConnection)
    */
@@ -2565,6 +2704,13 @@ export type Mutation = {
   /** Update many SeoSlice documents */
   updateManySeoSlicesConnection: SeoSliceConnection;
   /**
+   * Update many spacerAtoms
+   * @deprecated Please use the new paginated many mutation (updateManySpacerAtomsConnection)
+   */
+  updateManySpacerAtoms: BatchPayload;
+  /** Update many SpacerAtom documents */
+  updateManySpacerAtomsConnection: SpacerAtomConnection;
+  /**
    * Update many speakers
    * @deprecated Please use the new paginated many mutation (updateManySpeakersConnection)
    */
@@ -2585,6 +2731,8 @@ export type Mutation = {
   updateManyThemesSlice: BatchPayload;
   /** Update many ThemeSlice documents */
   updateManyThemesSliceConnection: ThemeSliceConnection;
+  /** Update one navbarMatter */
+  updateNavbarMatter?: Maybe<NavbarMatter>;
   /** Update one page */
   updatePage?: Maybe<Page>;
   /** Update one scheduleSlice */
@@ -2593,6 +2741,8 @@ export type Mutation = {
   updateScheduledRelease?: Maybe<ScheduledRelease>;
   /** Update one seoSlice */
   updateSeoSlice?: Maybe<SeoSlice>;
+  /** Update one spacerAtom */
+  updateSpacerAtom?: Maybe<SpacerAtom>;
   /** Update one speaker */
   updateSpeaker?: Maybe<Speaker>;
   /** Update one speakersSlice */
@@ -2607,12 +2757,16 @@ export type Mutation = {
   upsertHeroSlice?: Maybe<HeroSlice>;
   /** Upsert one liveSlice */
   upsertLiveSlice?: Maybe<LiveSlice>;
+  /** Upsert one navbarMatter */
+  upsertNavbarMatter?: Maybe<NavbarMatter>;
   /** Upsert one page */
   upsertPage?: Maybe<Page>;
   /** Upsert one scheduleSlice */
   upsertScheduleSlice?: Maybe<ScheduleSlice>;
   /** Upsert one seoSlice */
   upsertSeoSlice?: Maybe<SeoSlice>;
+  /** Upsert one spacerAtom */
+  upsertSpacerAtom?: Maybe<SpacerAtom>;
   /** Upsert one speaker */
   upsertSpeaker?: Maybe<Speaker>;
   /** Upsert one speakersSlice */
@@ -2642,6 +2796,11 @@ export type MutationCreateLiveSliceArgs = {
 };
 
 
+export type MutationCreateNavbarMatterArgs = {
+  data: NavbarMatterCreateInput;
+};
+
+
 export type MutationCreatePageArgs = {
   data: PageCreateInput;
 };
@@ -2659,6 +2818,11 @@ export type MutationCreateScheduledReleaseArgs = {
 
 export type MutationCreateSeoSliceArgs = {
   data: SeoSliceCreateInput;
+};
+
+
+export type MutationCreateSpacerAtomArgs = {
+  data: SpacerAtomCreateInput;
 };
 
 
@@ -2757,6 +2921,21 @@ export type MutationDeleteManyLiveSlicesConnectionArgs = {
 };
 
 
+export type MutationDeleteManyNavbarMattersArgs = {
+  where?: Maybe<NavbarMatterManyWhereInput>;
+};
+
+
+export type MutationDeleteManyNavbarMattersConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<NavbarMatterManyWhereInput>;
+};
+
+
 export type MutationDeleteManyPagesArgs = {
   where?: Maybe<PageManyWhereInput>;
 };
@@ -2799,6 +2978,21 @@ export type MutationDeleteManySeoSlicesConnectionArgs = {
   last?: Maybe<Scalars['Int']>;
   skip?: Maybe<Scalars['Int']>;
   where?: Maybe<SeoSliceManyWhereInput>;
+};
+
+
+export type MutationDeleteManySpacerAtomsArgs = {
+  where?: Maybe<SpacerAtomManyWhereInput>;
+};
+
+
+export type MutationDeleteManySpacerAtomsConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<SpacerAtomManyWhereInput>;
 };
 
 
@@ -2847,6 +3041,11 @@ export type MutationDeleteManyThemesSliceConnectionArgs = {
 };
 
 
+export type MutationDeleteNavbarMatterArgs = {
+  where: NavbarMatterWhereUniqueInput;
+};
+
+
 export type MutationDeletePageArgs = {
   where: PageWhereUniqueInput;
 };
@@ -2869,6 +3068,11 @@ export type MutationDeleteScheduledReleaseArgs = {
 
 export type MutationDeleteSeoSliceArgs = {
   where: SeoSliceWhereUniqueInput;
+};
+
+
+export type MutationDeleteSpacerAtomArgs = {
+  where: SpacerAtomWhereUniqueInput;
 };
 
 
@@ -2992,6 +3196,24 @@ export type MutationPublishManyLiveSlicesConnectionArgs = {
 };
 
 
+export type MutationPublishManyNavbarMattersArgs = {
+  to?: Array<Stage>;
+  where?: Maybe<NavbarMatterManyWhereInput>;
+};
+
+
+export type MutationPublishManyNavbarMattersConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  first?: Maybe<Scalars['Int']>;
+  from?: Maybe<Stage>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  to?: Array<Stage>;
+  where?: Maybe<NavbarMatterManyWhereInput>;
+};
+
+
 export type MutationPublishManyPagesArgs = {
   to?: Array<Stage>;
   where?: Maybe<PageManyWhereInput>;
@@ -3043,6 +3265,24 @@ export type MutationPublishManySeoSlicesConnectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   to?: Array<Stage>;
   where?: Maybe<SeoSliceManyWhereInput>;
+};
+
+
+export type MutationPublishManySpacerAtomsArgs = {
+  to?: Array<Stage>;
+  where?: Maybe<SpacerAtomManyWhereInput>;
+};
+
+
+export type MutationPublishManySpacerAtomsConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  first?: Maybe<Scalars['Int']>;
+  from?: Maybe<Stage>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  to?: Array<Stage>;
+  where?: Maybe<SpacerAtomManyWhereInput>;
 };
 
 
@@ -3100,6 +3340,12 @@ export type MutationPublishManyThemesSliceConnectionArgs = {
 };
 
 
+export type MutationPublishNavbarMatterArgs = {
+  to?: Array<Stage>;
+  where: NavbarMatterWhereUniqueInput;
+};
+
+
 export type MutationPublishPageArgs = {
   to?: Array<Stage>;
   where: PageWhereUniqueInput;
@@ -3115,6 +3361,12 @@ export type MutationPublishScheduleSliceArgs = {
 export type MutationPublishSeoSliceArgs = {
   to?: Array<Stage>;
   where: SeoSliceWhereUniqueInput;
+};
+
+
+export type MutationPublishSpacerAtomArgs = {
+  to?: Array<Stage>;
+  where: SpacerAtomWhereUniqueInput;
 };
 
 
@@ -3171,6 +3423,14 @@ export type MutationSchedulePublishLiveSliceArgs = {
 };
 
 
+export type MutationSchedulePublishNavbarMatterArgs = {
+  releaseAt?: Maybe<Scalars['DateTime']>;
+  releaseId?: Maybe<Scalars['String']>;
+  to?: Array<Stage>;
+  where: NavbarMatterWhereUniqueInput;
+};
+
+
 export type MutationSchedulePublishPageArgs = {
   releaseAt?: Maybe<Scalars['DateTime']>;
   releaseId?: Maybe<Scalars['String']>;
@@ -3192,6 +3452,14 @@ export type MutationSchedulePublishSeoSliceArgs = {
   releaseId?: Maybe<Scalars['String']>;
   to?: Array<Stage>;
   where: SeoSliceWhereUniqueInput;
+};
+
+
+export type MutationSchedulePublishSpacerAtomArgs = {
+  releaseAt?: Maybe<Scalars['DateTime']>;
+  releaseId?: Maybe<Scalars['String']>;
+  to?: Array<Stage>;
+  where: SpacerAtomWhereUniqueInput;
 };
 
 
@@ -3253,6 +3521,14 @@ export type MutationScheduleUnpublishLiveSliceArgs = {
 };
 
 
+export type MutationScheduleUnpublishNavbarMatterArgs = {
+  from?: Array<Stage>;
+  releaseAt?: Maybe<Scalars['DateTime']>;
+  releaseId?: Maybe<Scalars['String']>;
+  where: NavbarMatterWhereUniqueInput;
+};
+
+
 export type MutationScheduleUnpublishPageArgs = {
   from?: Array<Stage>;
   releaseAt?: Maybe<Scalars['DateTime']>;
@@ -3274,6 +3550,14 @@ export type MutationScheduleUnpublishSeoSliceArgs = {
   releaseAt?: Maybe<Scalars['DateTime']>;
   releaseId?: Maybe<Scalars['String']>;
   where: SeoSliceWhereUniqueInput;
+};
+
+
+export type MutationScheduleUnpublishSpacerAtomArgs = {
+  from?: Array<Stage>;
+  releaseAt?: Maybe<Scalars['DateTime']>;
+  releaseId?: Maybe<Scalars['String']>;
+  where: SpacerAtomWhereUniqueInput;
 };
 
 
@@ -3403,6 +3687,24 @@ export type MutationUnpublishManyLiveSlicesConnectionArgs = {
 };
 
 
+export type MutationUnpublishManyNavbarMattersArgs = {
+  from?: Array<Stage>;
+  where?: Maybe<NavbarMatterManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyNavbarMattersConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  first?: Maybe<Scalars['Int']>;
+  from?: Array<Stage>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  stage?: Maybe<Stage>;
+  where?: Maybe<NavbarMatterManyWhereInput>;
+};
+
+
 export type MutationUnpublishManyPagesArgs = {
   from?: Array<Stage>;
   where?: Maybe<PageManyWhereInput>;
@@ -3454,6 +3756,24 @@ export type MutationUnpublishManySeoSlicesConnectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   stage?: Maybe<Stage>;
   where?: Maybe<SeoSliceManyWhereInput>;
+};
+
+
+export type MutationUnpublishManySpacerAtomsArgs = {
+  from?: Array<Stage>;
+  where?: Maybe<SpacerAtomManyWhereInput>;
+};
+
+
+export type MutationUnpublishManySpacerAtomsConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  first?: Maybe<Scalars['Int']>;
+  from?: Array<Stage>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  stage?: Maybe<Stage>;
+  where?: Maybe<SpacerAtomManyWhereInput>;
 };
 
 
@@ -3511,6 +3831,12 @@ export type MutationUnpublishManyThemesSliceConnectionArgs = {
 };
 
 
+export type MutationUnpublishNavbarMatterArgs = {
+  from?: Array<Stage>;
+  where: NavbarMatterWhereUniqueInput;
+};
+
+
 export type MutationUnpublishPageArgs = {
   from?: Array<Stage>;
   where: PageWhereUniqueInput;
@@ -3526,6 +3852,12 @@ export type MutationUnpublishScheduleSliceArgs = {
 export type MutationUnpublishSeoSliceArgs = {
   from?: Array<Stage>;
   where: SeoSliceWhereUniqueInput;
+};
+
+
+export type MutationUnpublishSpacerAtomArgs = {
+  from?: Array<Stage>;
+  where: SpacerAtomWhereUniqueInput;
 };
 
 
@@ -3639,6 +3971,23 @@ export type MutationUpdateManyLiveSlicesConnectionArgs = {
 };
 
 
+export type MutationUpdateManyNavbarMattersArgs = {
+  data: NavbarMatterUpdateManyInput;
+  where?: Maybe<NavbarMatterManyWhereInput>;
+};
+
+
+export type MutationUpdateManyNavbarMattersConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  data: NavbarMatterUpdateManyInput;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<NavbarMatterManyWhereInput>;
+};
+
+
 export type MutationUpdateManyPagesArgs = {
   data: PageUpdateManyInput;
   where?: Maybe<PageManyWhereInput>;
@@ -3687,6 +4036,23 @@ export type MutationUpdateManySeoSlicesConnectionArgs = {
   last?: Maybe<Scalars['Int']>;
   skip?: Maybe<Scalars['Int']>;
   where?: Maybe<SeoSliceManyWhereInput>;
+};
+
+
+export type MutationUpdateManySpacerAtomsArgs = {
+  data: SpacerAtomUpdateManyInput;
+  where?: Maybe<SpacerAtomManyWhereInput>;
+};
+
+
+export type MutationUpdateManySpacerAtomsConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  data: SpacerAtomUpdateManyInput;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<SpacerAtomManyWhereInput>;
 };
 
 
@@ -3741,6 +4107,12 @@ export type MutationUpdateManyThemesSliceConnectionArgs = {
 };
 
 
+export type MutationUpdateNavbarMatterArgs = {
+  data: NavbarMatterUpdateInput;
+  where: NavbarMatterWhereUniqueInput;
+};
+
+
 export type MutationUpdatePageArgs = {
   data: PageUpdateInput;
   where: PageWhereUniqueInput;
@@ -3762,6 +4134,12 @@ export type MutationUpdateScheduledReleaseArgs = {
 export type MutationUpdateSeoSliceArgs = {
   data: SeoSliceUpdateInput;
   where: SeoSliceWhereUniqueInput;
+};
+
+
+export type MutationUpdateSpacerAtomArgs = {
+  data: SpacerAtomUpdateInput;
+  where: SpacerAtomWhereUniqueInput;
 };
 
 
@@ -3807,6 +4185,12 @@ export type MutationUpsertLiveSliceArgs = {
 };
 
 
+export type MutationUpsertNavbarMatterArgs = {
+  upsert: NavbarMatterUpsertInput;
+  where: NavbarMatterWhereUniqueInput;
+};
+
+
 export type MutationUpsertPageArgs = {
   upsert: PageUpsertInput;
   where: PageWhereUniqueInput;
@@ -3825,6 +4209,12 @@ export type MutationUpsertSeoSliceArgs = {
 };
 
 
+export type MutationUpsertSpacerAtomArgs = {
+  upsert: SpacerAtomUpsertInput;
+  where: SpacerAtomWhereUniqueInput;
+};
+
+
 export type MutationUpsertSpeakerArgs = {
   upsert: SpeakerUpsertInput;
   where: SpeakerWhereUniqueInput;
@@ -3840,6 +4230,487 @@ export type MutationUpsertSpeakersSliceArgs = {
 export type MutationUpsertThemeSliceArgs = {
   upsert: ThemeSliceUpsertInput;
   where: ThemeSliceWhereUniqueInput;
+};
+
+export type NavbarMatter = Node & {
+  __typename?: 'NavbarMatter';
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<NavbarMatter>;
+  /** List of NavbarMatter versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  items: Array<NavbarMatterItems>;
+  logo?: Maybe<Asset>;
+  pages: Array<Page>;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type NavbarMatterCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type NavbarMatterDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+export type NavbarMatterHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: Maybe<Stage>;
+};
+
+
+export type NavbarMatterItemsArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+  skip?: Maybe<Scalars['Int']>;
+};
+
+
+export type NavbarMatterLogoArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type NavbarMatterPagesArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<PageWhereInput>;
+};
+
+
+export type NavbarMatterPublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type NavbarMatterScheduledInArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<ScheduledOperationWhereInput>;
+};
+
+
+export type NavbarMatterUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+export type NavbarMatterConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: NavbarMatterWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type NavbarMatterConnection = {
+  __typename?: 'NavbarMatterConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<NavbarMatterEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type NavbarMatterCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  items?: Maybe<NavbarMatterItemsCreateManyInlineInput>;
+  logo?: Maybe<AssetCreateOneInlineInput>;
+  pages?: Maybe<PageCreateManyInlineInput>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type NavbarMatterCreateManyInlineInput = {
+  /** Connect multiple existing NavbarMatter documents */
+  connect?: Maybe<Array<NavbarMatterWhereUniqueInput>>;
+  /** Create and connect multiple existing NavbarMatter documents */
+  create?: Maybe<Array<NavbarMatterCreateInput>>;
+};
+
+export type NavbarMatterCreateOneInlineInput = {
+  /** Connect one existing NavbarMatter document */
+  connect?: Maybe<NavbarMatterWhereUniqueInput>;
+  /** Create and connect one NavbarMatter document */
+  create?: Maybe<NavbarMatterCreateInput>;
+};
+
+/** An edge in a connection. */
+export type NavbarMatterEdge = {
+  __typename?: 'NavbarMatterEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: NavbarMatter;
+};
+
+export type NavbarMatterItems = Page;
+
+export type NavbarMatterItemsConnectInput = {
+  Page?: Maybe<PageConnectInput>;
+};
+
+export type NavbarMatterItemsCreateInput = {
+  Page?: Maybe<PageCreateInput>;
+};
+
+export type NavbarMatterItemsCreateManyInlineInput = {
+  /** Connect multiple existing NavbarMatterItems documents */
+  connect?: Maybe<Array<NavbarMatterItemsWhereUniqueInput>>;
+  /** Create and connect multiple existing NavbarMatterItems documents */
+  create?: Maybe<Array<NavbarMatterItemsCreateInput>>;
+};
+
+export type NavbarMatterItemsCreateOneInlineInput = {
+  /** Connect one existing NavbarMatterItems document */
+  connect?: Maybe<NavbarMatterItemsWhereUniqueInput>;
+  /** Create and connect one NavbarMatterItems document */
+  create?: Maybe<NavbarMatterItemsCreateInput>;
+};
+
+export type NavbarMatterItemsUpdateInput = {
+  Page?: Maybe<PageUpdateInput>;
+};
+
+export type NavbarMatterItemsUpdateManyInlineInput = {
+  /** Connect multiple existing NavbarMatterItems documents */
+  connect?: Maybe<Array<NavbarMatterItemsConnectInput>>;
+  /** Create and connect multiple NavbarMatterItems documents */
+  create?: Maybe<Array<NavbarMatterItemsCreateInput>>;
+  /** Delete multiple NavbarMatterItems documents */
+  delete?: Maybe<Array<NavbarMatterItemsWhereUniqueInput>>;
+  /** Disconnect multiple NavbarMatterItems documents */
+  disconnect?: Maybe<Array<NavbarMatterItemsWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing NavbarMatterItems documents */
+  set?: Maybe<Array<NavbarMatterItemsWhereUniqueInput>>;
+  /** Update multiple NavbarMatterItems documents */
+  update?: Maybe<Array<NavbarMatterItemsUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple NavbarMatterItems documents */
+  upsert?: Maybe<Array<NavbarMatterItemsUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type NavbarMatterItemsUpdateManyWithNestedWhereInput = {
+  Page?: Maybe<PageUpdateManyWithNestedWhereInput>;
+};
+
+export type NavbarMatterItemsUpdateOneInlineInput = {
+  /** Connect existing NavbarMatterItems document */
+  connect?: Maybe<NavbarMatterItemsWhereUniqueInput>;
+  /** Create and connect one NavbarMatterItems document */
+  create?: Maybe<NavbarMatterItemsCreateInput>;
+  /** Delete currently connected NavbarMatterItems document */
+  delete?: Maybe<Scalars['Boolean']>;
+  /** Disconnect currently connected NavbarMatterItems document */
+  disconnect?: Maybe<Scalars['Boolean']>;
+  /** Update single NavbarMatterItems document */
+  update?: Maybe<NavbarMatterItemsUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single NavbarMatterItems document */
+  upsert?: Maybe<NavbarMatterItemsUpsertWithNestedWhereUniqueInput>;
+};
+
+export type NavbarMatterItemsUpdateWithNestedWhereUniqueInput = {
+  Page?: Maybe<PageUpdateWithNestedWhereUniqueInput>;
+};
+
+export type NavbarMatterItemsUpsertWithNestedWhereUniqueInput = {
+  Page?: Maybe<PageUpsertWithNestedWhereUniqueInput>;
+};
+
+export type NavbarMatterItemsWhereInput = {
+  Page?: Maybe<PageWhereInput>;
+};
+
+export type NavbarMatterItemsWhereUniqueInput = {
+  Page?: Maybe<PageWhereUniqueInput>;
+};
+
+/** Identifies documents */
+export type NavbarMatterManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<NavbarMatterWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<NavbarMatterWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<NavbarMatterWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  createdBy?: Maybe<UserWhereInput>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  logo?: Maybe<AssetWhereInput>;
+  pages_every?: Maybe<PageWhereInput>;
+  pages_none?: Maybe<PageWhereInput>;
+  pages_some?: Maybe<PageWhereInput>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  publishedBy?: Maybe<UserWhereInput>;
+  scheduledIn_every?: Maybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: Maybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: Maybe<ScheduledOperationWhereInput>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  updatedBy?: Maybe<UserWhereInput>;
+};
+
+export enum NavbarMatterOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type NavbarMatterUpdateInput = {
+  items?: Maybe<NavbarMatterItemsUpdateManyInlineInput>;
+  logo?: Maybe<AssetUpdateOneInlineInput>;
+  pages?: Maybe<PageUpdateManyInlineInput>;
+};
+
+export type NavbarMatterUpdateManyInlineInput = {
+  /** Connect multiple existing NavbarMatter documents */
+  connect?: Maybe<Array<NavbarMatterConnectInput>>;
+  /** Create and connect multiple NavbarMatter documents */
+  create?: Maybe<Array<NavbarMatterCreateInput>>;
+  /** Delete multiple NavbarMatter documents */
+  delete?: Maybe<Array<NavbarMatterWhereUniqueInput>>;
+  /** Disconnect multiple NavbarMatter documents */
+  disconnect?: Maybe<Array<NavbarMatterWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing NavbarMatter documents */
+  set?: Maybe<Array<NavbarMatterWhereUniqueInput>>;
+  /** Update multiple NavbarMatter documents */
+  update?: Maybe<Array<NavbarMatterUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple NavbarMatter documents */
+  upsert?: Maybe<Array<NavbarMatterUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type NavbarMatterUpdateManyInput = {
+  /** No fields in updateMany data input */
+  _?: Maybe<Scalars['String']>;
+};
+
+export type NavbarMatterUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: NavbarMatterUpdateManyInput;
+  /** Document search */
+  where: NavbarMatterWhereInput;
+};
+
+export type NavbarMatterUpdateOneInlineInput = {
+  /** Connect existing NavbarMatter document */
+  connect?: Maybe<NavbarMatterWhereUniqueInput>;
+  /** Create and connect one NavbarMatter document */
+  create?: Maybe<NavbarMatterCreateInput>;
+  /** Delete currently connected NavbarMatter document */
+  delete?: Maybe<Scalars['Boolean']>;
+  /** Disconnect currently connected NavbarMatter document */
+  disconnect?: Maybe<Scalars['Boolean']>;
+  /** Update single NavbarMatter document */
+  update?: Maybe<NavbarMatterUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single NavbarMatter document */
+  upsert?: Maybe<NavbarMatterUpsertWithNestedWhereUniqueInput>;
+};
+
+export type NavbarMatterUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: NavbarMatterUpdateInput;
+  /** Unique document search */
+  where: NavbarMatterWhereUniqueInput;
+};
+
+export type NavbarMatterUpsertInput = {
+  /** Create document if it didn't exist */
+  create: NavbarMatterCreateInput;
+  /** Update document if it exists */
+  update: NavbarMatterUpdateInput;
+};
+
+export type NavbarMatterUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: NavbarMatterUpsertInput;
+  /** Unique document search */
+  where: NavbarMatterWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type NavbarMatterWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<NavbarMatterWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<NavbarMatterWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<NavbarMatterWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  createdBy?: Maybe<UserWhereInput>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  logo?: Maybe<AssetWhereInput>;
+  pages_every?: Maybe<PageWhereInput>;
+  pages_none?: Maybe<PageWhereInput>;
+  pages_some?: Maybe<PageWhereInput>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  publishedBy?: Maybe<UserWhereInput>;
+  scheduledIn_every?: Maybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: Maybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: Maybe<ScheduledOperationWhereInput>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  updatedBy?: Maybe<UserWhereInput>;
+};
+
+/** References NavbarMatter record uniquely */
+export type NavbarMatterWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>;
 };
 
 /** An object with an ID */
@@ -3862,6 +4733,7 @@ export type Page = Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID'];
+  navbarMatters: Array<NavbarMatter>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** User that last published this document */
@@ -3895,6 +4767,17 @@ export type PageHistoryArgs = {
   limit?: Scalars['Int'];
   skip?: Scalars['Int'];
   stageOverride?: Maybe<Stage>;
+};
+
+
+export type PageNavbarMattersArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<NavbarMatterWhereInput>;
 };
 
 
@@ -3947,6 +4830,7 @@ export type PageConnection = {
 
 export type PageCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
+  navbarMatters?: Maybe<NavbarMatterCreateManyInlineInput>;
   slices?: Maybe<PageSlicesCreateManyInlineInput>;
   slug: Scalars['String'];
   title?: Maybe<Scalars['String']>;
@@ -4036,6 +4920,9 @@ export type PageManyWhereInput = {
   id_not_starts_with?: Maybe<Scalars['ID']>;
   /** All values starting with the given string. */
   id_starts_with?: Maybe<Scalars['ID']>;
+  navbarMatters_every?: Maybe<NavbarMatterWhereInput>;
+  navbarMatters_none?: Maybe<NavbarMatterWhereInput>;
+  navbarMatters_some?: Maybe<NavbarMatterWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
@@ -4126,13 +5013,15 @@ export enum PageOrderByInput {
   UpdatedAtDesc = 'updatedAt_DESC'
 }
 
-export type PageSlices = HeroSlice | LiveSlice | ScheduleSlice | SeoSlice | SpeakersSlice | ThemeSlice;
+export type PageSlices = HeroSlice | LiveSlice | NavbarMatter | ScheduleSlice | SeoSlice | SpacerAtom | SpeakersSlice | ThemeSlice;
 
 export type PageSlicesConnectInput = {
   HeroSlice?: Maybe<HeroSliceConnectInput>;
   LiveSlice?: Maybe<LiveSliceConnectInput>;
+  NavbarMatter?: Maybe<NavbarMatterConnectInput>;
   ScheduleSlice?: Maybe<ScheduleSliceConnectInput>;
   SeoSlice?: Maybe<SeoSliceConnectInput>;
+  SpacerAtom?: Maybe<SpacerAtomConnectInput>;
   SpeakersSlice?: Maybe<SpeakersSliceConnectInput>;
   ThemeSlice?: Maybe<ThemeSliceConnectInput>;
 };
@@ -4140,8 +5029,10 @@ export type PageSlicesConnectInput = {
 export type PageSlicesCreateInput = {
   HeroSlice?: Maybe<HeroSliceCreateInput>;
   LiveSlice?: Maybe<LiveSliceCreateInput>;
+  NavbarMatter?: Maybe<NavbarMatterCreateInput>;
   ScheduleSlice?: Maybe<ScheduleSliceCreateInput>;
   SeoSlice?: Maybe<SeoSliceCreateInput>;
+  SpacerAtom?: Maybe<SpacerAtomCreateInput>;
   SpeakersSlice?: Maybe<SpeakersSliceCreateInput>;
   ThemeSlice?: Maybe<ThemeSliceCreateInput>;
 };
@@ -4163,8 +5054,10 @@ export type PageSlicesCreateOneInlineInput = {
 export type PageSlicesUpdateInput = {
   HeroSlice?: Maybe<HeroSliceUpdateInput>;
   LiveSlice?: Maybe<LiveSliceUpdateInput>;
+  NavbarMatter?: Maybe<NavbarMatterUpdateInput>;
   ScheduleSlice?: Maybe<ScheduleSliceUpdateInput>;
   SeoSlice?: Maybe<SeoSliceUpdateInput>;
+  SpacerAtom?: Maybe<SpacerAtomUpdateInput>;
   SpeakersSlice?: Maybe<SpeakersSliceUpdateInput>;
   ThemeSlice?: Maybe<ThemeSliceUpdateInput>;
 };
@@ -4189,8 +5082,10 @@ export type PageSlicesUpdateManyInlineInput = {
 export type PageSlicesUpdateManyWithNestedWhereInput = {
   HeroSlice?: Maybe<HeroSliceUpdateManyWithNestedWhereInput>;
   LiveSlice?: Maybe<LiveSliceUpdateManyWithNestedWhereInput>;
+  NavbarMatter?: Maybe<NavbarMatterUpdateManyWithNestedWhereInput>;
   ScheduleSlice?: Maybe<ScheduleSliceUpdateManyWithNestedWhereInput>;
   SeoSlice?: Maybe<SeoSliceUpdateManyWithNestedWhereInput>;
+  SpacerAtom?: Maybe<SpacerAtomUpdateManyWithNestedWhereInput>;
   SpeakersSlice?: Maybe<SpeakersSliceUpdateManyWithNestedWhereInput>;
   ThemeSlice?: Maybe<ThemeSliceUpdateManyWithNestedWhereInput>;
 };
@@ -4213,8 +5108,10 @@ export type PageSlicesUpdateOneInlineInput = {
 export type PageSlicesUpdateWithNestedWhereUniqueInput = {
   HeroSlice?: Maybe<HeroSliceUpdateWithNestedWhereUniqueInput>;
   LiveSlice?: Maybe<LiveSliceUpdateWithNestedWhereUniqueInput>;
+  NavbarMatter?: Maybe<NavbarMatterUpdateWithNestedWhereUniqueInput>;
   ScheduleSlice?: Maybe<ScheduleSliceUpdateWithNestedWhereUniqueInput>;
   SeoSlice?: Maybe<SeoSliceUpdateWithNestedWhereUniqueInput>;
+  SpacerAtom?: Maybe<SpacerAtomUpdateWithNestedWhereUniqueInput>;
   SpeakersSlice?: Maybe<SpeakersSliceUpdateWithNestedWhereUniqueInput>;
   ThemeSlice?: Maybe<ThemeSliceUpdateWithNestedWhereUniqueInput>;
 };
@@ -4222,8 +5119,10 @@ export type PageSlicesUpdateWithNestedWhereUniqueInput = {
 export type PageSlicesUpsertWithNestedWhereUniqueInput = {
   HeroSlice?: Maybe<HeroSliceUpsertWithNestedWhereUniqueInput>;
   LiveSlice?: Maybe<LiveSliceUpsertWithNestedWhereUniqueInput>;
+  NavbarMatter?: Maybe<NavbarMatterUpsertWithNestedWhereUniqueInput>;
   ScheduleSlice?: Maybe<ScheduleSliceUpsertWithNestedWhereUniqueInput>;
   SeoSlice?: Maybe<SeoSliceUpsertWithNestedWhereUniqueInput>;
+  SpacerAtom?: Maybe<SpacerAtomUpsertWithNestedWhereUniqueInput>;
   SpeakersSlice?: Maybe<SpeakersSliceUpsertWithNestedWhereUniqueInput>;
   ThemeSlice?: Maybe<ThemeSliceUpsertWithNestedWhereUniqueInput>;
 };
@@ -4231,8 +5130,10 @@ export type PageSlicesUpsertWithNestedWhereUniqueInput = {
 export type PageSlicesWhereInput = {
   HeroSlice?: Maybe<HeroSliceWhereInput>;
   LiveSlice?: Maybe<LiveSliceWhereInput>;
+  NavbarMatter?: Maybe<NavbarMatterWhereInput>;
   ScheduleSlice?: Maybe<ScheduleSliceWhereInput>;
   SeoSlice?: Maybe<SeoSliceWhereInput>;
+  SpacerAtom?: Maybe<SpacerAtomWhereInput>;
   SpeakersSlice?: Maybe<SpeakersSliceWhereInput>;
   ThemeSlice?: Maybe<ThemeSliceWhereInput>;
 };
@@ -4240,13 +5141,16 @@ export type PageSlicesWhereInput = {
 export type PageSlicesWhereUniqueInput = {
   HeroSlice?: Maybe<HeroSliceWhereUniqueInput>;
   LiveSlice?: Maybe<LiveSliceWhereUniqueInput>;
+  NavbarMatter?: Maybe<NavbarMatterWhereUniqueInput>;
   ScheduleSlice?: Maybe<ScheduleSliceWhereUniqueInput>;
   SeoSlice?: Maybe<SeoSliceWhereUniqueInput>;
+  SpacerAtom?: Maybe<SpacerAtomWhereUniqueInput>;
   SpeakersSlice?: Maybe<SpeakersSliceWhereUniqueInput>;
   ThemeSlice?: Maybe<ThemeSliceWhereUniqueInput>;
 };
 
 export type PageUpdateInput = {
+  navbarMatters?: Maybe<NavbarMatterUpdateManyInlineInput>;
   slices?: Maybe<PageSlicesUpdateManyInlineInput>;
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -4361,6 +5265,9 @@ export type PageWhereInput = {
   id_not_starts_with?: Maybe<Scalars['ID']>;
   /** All values starting with the given string. */
   id_starts_with?: Maybe<Scalars['ID']>;
+  navbarMatters_every?: Maybe<NavbarMatterWhereInput>;
+  navbarMatters_none?: Maybe<NavbarMatterWhereInput>;
+  navbarMatters_some?: Maybe<NavbarMatterWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
@@ -4483,6 +5390,14 @@ export type Query = {
   liveSlices: Array<LiveSlice>;
   /** Retrieve multiple liveSlices using the Relay connection interface */
   liveSlicesConnection: LiveSliceConnection;
+  /** Retrieve a single navbarMatter */
+  navbarMatter?: Maybe<NavbarMatter>;
+  /** Retrieve document version */
+  navbarMatterVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple navbarMatters */
+  navbarMatters: Array<NavbarMatter>;
+  /** Retrieve multiple navbarMatters using the Relay connection interface */
+  navbarMattersConnection: NavbarMatterConnection;
   /** Fetches an object given its ID */
   node?: Maybe<Node>;
   /** Retrieve a single page */
@@ -4521,6 +5436,14 @@ export type Query = {
   seoSlices: Array<SeoSlice>;
   /** Retrieve multiple seoSlices using the Relay connection interface */
   seoSlicesConnection: SeoSliceConnection;
+  /** Retrieve a single spacerAtom */
+  spacerAtom?: Maybe<SpacerAtom>;
+  /** Retrieve document version */
+  spacerAtomVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple spacerAtoms */
+  spacerAtoms: Array<SpacerAtom>;
+  /** Retrieve multiple spacerAtoms using the Relay connection interface */
+  spacerAtomsConnection: SpacerAtomConnection;
   /** Retrieve a single speaker */
   speaker?: Maybe<Speaker>;
   /** Retrieve document version */
@@ -4703,6 +5626,44 @@ export type QueryLiveSlicesConnectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   stage?: Stage;
   where?: Maybe<LiveSliceWhereInput>;
+};
+
+
+export type QueryNavbarMatterArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: NavbarMatterWhereUniqueInput;
+};
+
+
+export type QueryNavbarMatterVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryNavbarMattersArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: Maybe<NavbarMatterOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: Maybe<NavbarMatterWhereInput>;
+};
+
+
+export type QueryNavbarMattersConnectionArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: Maybe<NavbarMatterOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: Maybe<NavbarMatterWhereInput>;
 };
 
 
@@ -4890,6 +5851,44 @@ export type QuerySeoSlicesConnectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   stage?: Stage;
   where?: Maybe<SeoSliceWhereInput>;
+};
+
+
+export type QuerySpacerAtomArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: SpacerAtomWhereUniqueInput;
+};
+
+
+export type QuerySpacerAtomVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QuerySpacerAtomsArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: Maybe<SpacerAtomOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: Maybe<SpacerAtomWhereInput>;
+};
+
+
+export type QuerySpacerAtomsConnectionArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: Maybe<SpacerAtomOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: Maybe<SpacerAtomWhereInput>;
 };
 
 
@@ -5587,7 +6586,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: Maybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Event | HeroSlice | LiveSlice | Page | ScheduleSlice | SeoSlice | Speaker | SpeakersSlice | ThemeSlice;
+export type ScheduledOperationAffectedDocument = Asset | Event | HeroSlice | LiveSlice | NavbarMatter | Page | ScheduleSlice | SeoSlice | SpacerAtom | Speaker | SpeakersSlice | ThemeSlice;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -6980,6 +7979,418 @@ export type SeoSliceWhereInput = {
 
 /** References SeoSlice record uniquely */
 export type SeoSliceWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type SpacerAtom = Node & {
+  __typename?: 'SpacerAtom';
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<SpacerAtom>;
+  height?: Maybe<Scalars['Float']>;
+  /** List of SpacerAtom versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  pages: Array<Page>;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type SpacerAtomCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type SpacerAtomDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+export type SpacerAtomHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: Maybe<Stage>;
+};
+
+
+export type SpacerAtomPagesArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<PageWhereInput>;
+};
+
+
+export type SpacerAtomPublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type SpacerAtomScheduledInArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<ScheduledOperationWhereInput>;
+};
+
+
+export type SpacerAtomUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+export type SpacerAtomConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: SpacerAtomWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type SpacerAtomConnection = {
+  __typename?: 'SpacerAtomConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<SpacerAtomEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type SpacerAtomCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  height?: Maybe<Scalars['Float']>;
+  pages?: Maybe<PageCreateManyInlineInput>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type SpacerAtomCreateManyInlineInput = {
+  /** Connect multiple existing SpacerAtom documents */
+  connect?: Maybe<Array<SpacerAtomWhereUniqueInput>>;
+  /** Create and connect multiple existing SpacerAtom documents */
+  create?: Maybe<Array<SpacerAtomCreateInput>>;
+};
+
+export type SpacerAtomCreateOneInlineInput = {
+  /** Connect one existing SpacerAtom document */
+  connect?: Maybe<SpacerAtomWhereUniqueInput>;
+  /** Create and connect one SpacerAtom document */
+  create?: Maybe<SpacerAtomCreateInput>;
+};
+
+/** An edge in a connection. */
+export type SpacerAtomEdge = {
+  __typename?: 'SpacerAtomEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: SpacerAtom;
+};
+
+/** Identifies documents */
+export type SpacerAtomManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<SpacerAtomWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<SpacerAtomWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<SpacerAtomWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  createdBy?: Maybe<UserWhereInput>;
+  height?: Maybe<Scalars['Float']>;
+  /** All values greater than the given value. */
+  height_gt?: Maybe<Scalars['Float']>;
+  /** All values greater than or equal the given value. */
+  height_gte?: Maybe<Scalars['Float']>;
+  /** All values that are contained in given list. */
+  height_in?: Maybe<Array<Scalars['Float']>>;
+  /** All values less than the given value. */
+  height_lt?: Maybe<Scalars['Float']>;
+  /** All values less than or equal the given value. */
+  height_lte?: Maybe<Scalars['Float']>;
+  /** All values that are not equal to given value. */
+  height_not?: Maybe<Scalars['Float']>;
+  /** All values that are not contained in given list. */
+  height_not_in?: Maybe<Array<Scalars['Float']>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  pages_every?: Maybe<PageWhereInput>;
+  pages_none?: Maybe<PageWhereInput>;
+  pages_some?: Maybe<PageWhereInput>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  publishedBy?: Maybe<UserWhereInput>;
+  scheduledIn_every?: Maybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: Maybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: Maybe<ScheduledOperationWhereInput>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  updatedBy?: Maybe<UserWhereInput>;
+};
+
+export enum SpacerAtomOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  HeightAsc = 'height_ASC',
+  HeightDesc = 'height_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type SpacerAtomUpdateInput = {
+  height?: Maybe<Scalars['Float']>;
+  pages?: Maybe<PageUpdateManyInlineInput>;
+};
+
+export type SpacerAtomUpdateManyInlineInput = {
+  /** Connect multiple existing SpacerAtom documents */
+  connect?: Maybe<Array<SpacerAtomConnectInput>>;
+  /** Create and connect multiple SpacerAtom documents */
+  create?: Maybe<Array<SpacerAtomCreateInput>>;
+  /** Delete multiple SpacerAtom documents */
+  delete?: Maybe<Array<SpacerAtomWhereUniqueInput>>;
+  /** Disconnect multiple SpacerAtom documents */
+  disconnect?: Maybe<Array<SpacerAtomWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing SpacerAtom documents */
+  set?: Maybe<Array<SpacerAtomWhereUniqueInput>>;
+  /** Update multiple SpacerAtom documents */
+  update?: Maybe<Array<SpacerAtomUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple SpacerAtom documents */
+  upsert?: Maybe<Array<SpacerAtomUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type SpacerAtomUpdateManyInput = {
+  height?: Maybe<Scalars['Float']>;
+};
+
+export type SpacerAtomUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: SpacerAtomUpdateManyInput;
+  /** Document search */
+  where: SpacerAtomWhereInput;
+};
+
+export type SpacerAtomUpdateOneInlineInput = {
+  /** Connect existing SpacerAtom document */
+  connect?: Maybe<SpacerAtomWhereUniqueInput>;
+  /** Create and connect one SpacerAtom document */
+  create?: Maybe<SpacerAtomCreateInput>;
+  /** Delete currently connected SpacerAtom document */
+  delete?: Maybe<Scalars['Boolean']>;
+  /** Disconnect currently connected SpacerAtom document */
+  disconnect?: Maybe<Scalars['Boolean']>;
+  /** Update single SpacerAtom document */
+  update?: Maybe<SpacerAtomUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single SpacerAtom document */
+  upsert?: Maybe<SpacerAtomUpsertWithNestedWhereUniqueInput>;
+};
+
+export type SpacerAtomUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: SpacerAtomUpdateInput;
+  /** Unique document search */
+  where: SpacerAtomWhereUniqueInput;
+};
+
+export type SpacerAtomUpsertInput = {
+  /** Create document if it didn't exist */
+  create: SpacerAtomCreateInput;
+  /** Update document if it exists */
+  update: SpacerAtomUpdateInput;
+};
+
+export type SpacerAtomUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: SpacerAtomUpsertInput;
+  /** Unique document search */
+  where: SpacerAtomWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type SpacerAtomWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<SpacerAtomWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<SpacerAtomWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<SpacerAtomWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  createdBy?: Maybe<UserWhereInput>;
+  height?: Maybe<Scalars['Float']>;
+  /** All values greater than the given value. */
+  height_gt?: Maybe<Scalars['Float']>;
+  /** All values greater than or equal the given value. */
+  height_gte?: Maybe<Scalars['Float']>;
+  /** All values that are contained in given list. */
+  height_in?: Maybe<Array<Scalars['Float']>>;
+  /** All values less than the given value. */
+  height_lt?: Maybe<Scalars['Float']>;
+  /** All values less than or equal the given value. */
+  height_lte?: Maybe<Scalars['Float']>;
+  /** All values that are not equal to given value. */
+  height_not?: Maybe<Scalars['Float']>;
+  /** All values that are not contained in given list. */
+  height_not_in?: Maybe<Array<Scalars['Float']>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  pages_every?: Maybe<PageWhereInput>;
+  pages_none?: Maybe<PageWhereInput>;
+  pages_some?: Maybe<PageWhereInput>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  publishedBy?: Maybe<UserWhereInput>;
+  scheduledIn_every?: Maybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: Maybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: Maybe<ScheduledOperationWhereInput>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  updatedBy?: Maybe<UserWhereInput>;
+};
+
+/** References SpacerAtom record uniquely */
+export type SpacerAtomWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>;
 };
 
@@ -8909,6 +10320,10 @@ export enum _SystemDateTimeFieldVariation {
   Localization = 'localization'
 }
 
+export type SpacerFragment = { __typename?: 'SpacerAtom', id: string, height?: number | null | undefined };
+
+export type NavbarFragment = { __typename?: 'NavbarMatter', id: string, logo?: { __typename?: 'Asset', url: string } | null | undefined, items: Array<{ __typename?: 'Page', id: string, slug: string, title?: string | null | undefined }> };
+
 export type PagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -8919,7 +10334,9 @@ export type PageQueryVariables = Exact<{
 }>;
 
 
-export type PageQuery = { __typename?: 'Query', page?: { __typename?: 'Page', title?: string | null | undefined, slug: string, slices: Array<{ __typename?: 'HeroSlice' } | { __typename?: 'LiveSlice' } | { __typename?: 'ScheduleSlice', id: string, title?: string | null | undefined, events: Array<{ __typename?: 'Event', id: string, title?: string | null | undefined, subtitle?: string | null | undefined, startTime?: any | null | undefined, endTime?: any | null | undefined }> } | { __typename?: 'SeoSlice', id: string, title?: string | null | undefined, images: Array<{ __typename?: 'Asset', id: string, height?: number | null | undefined, width?: number | null | undefined, url: string }> } | { __typename?: 'SpeakersSlice', id: string, subtitle?: string | null | undefined, title?: string | null | undefined, speakers: Array<{ __typename?: 'Speaker', id: string, name?: string | null | undefined, location?: string | null | undefined, image?: { __typename?: 'Asset', url: string, width?: number | null | undefined, height?: number | null | undefined } | null | undefined }> } | { __typename?: 'ThemeSlice', id: string, embed?: string | null | undefined, title?: string | null | undefined, subtitle?: string | null | undefined }> } | null | undefined };
+export type PageQuery = { __typename?: 'Query', page?: { __typename?: 'Page', title?: string | null | undefined, slug: string, slices: Array<{ __typename?: 'HeroSlice' } | { __typename?: 'LiveSlice', id: string, title?: string | null | undefined, embed?: string | null | undefined } | { __typename?: 'NavbarMatter', id: string, logo?: { __typename?: 'Asset', url: string } | null | undefined, items: Array<{ __typename?: 'Page', id: string, slug: string, title?: string | null | undefined }> } | { __typename?: 'ScheduleSlice', id: string, title?: string | null | undefined, events: Array<{ __typename?: 'Event', id: string, title?: string | null | undefined, subtitle?: string | null | undefined, startTime?: any | null | undefined, endTime?: any | null | undefined }> } | { __typename?: 'SeoSlice', id: string, title?: string | null | undefined, images: Array<{ __typename?: 'Asset', id: string, height?: number | null | undefined, width?: number | null | undefined, url: string }> } | { __typename?: 'SpacerAtom', id: string, height?: number | null | undefined } | { __typename?: 'SpeakersSlice', id: string, subtitle?: string | null | undefined, title?: string | null | undefined, speakers: Array<{ __typename?: 'Speaker', id: string, name?: string | null | undefined, location?: string | null | undefined, image?: { __typename?: 'Asset', url: string, width?: number | null | undefined, height?: number | null | undefined } | null | undefined }> } | { __typename?: 'ThemeSlice', id: string, embed?: string | null | undefined, title?: string | null | undefined, subtitle?: string | null | undefined }> } | null | undefined };
+
+export type LiveFragment = { __typename?: 'LiveSlice', id: string, title?: string | null | undefined, embed?: string | null | undefined };
 
 export type ScheduleFragment = { __typename?: 'ScheduleSlice', id: string, title?: string | null | undefined, events: Array<{ __typename?: 'Event', id: string, title?: string | null | undefined, subtitle?: string | null | undefined, startTime?: any | null | undefined, endTime?: any | null | undefined }> };
 
@@ -8929,6 +10346,34 @@ export type SpeakersFragment = { __typename?: 'SpeakersSlice', id: string, subti
 
 export type ThemeFragment = { __typename?: 'ThemeSlice', id: string, embed?: string | null | undefined, title?: string | null | undefined, subtitle?: string | null | undefined };
 
+export const SpacerFragmentDoc = gql`
+    fragment Spacer on SpacerAtom {
+  id
+  height
+}
+    `;
+export const NavbarFragmentDoc = gql`
+    fragment Navbar on NavbarMatter {
+  id
+  logo {
+    url
+  }
+  items {
+    ... on Page {
+      id
+      slug
+      title
+    }
+  }
+}
+    `;
+export const LiveFragmentDoc = gql`
+    fragment Live on LiveSlice {
+  id
+  title
+  embed
+}
+    `;
 export const ScheduleFragmentDoc = gql`
     fragment Schedule on ScheduleSlice {
   id
@@ -9020,17 +10465,23 @@ export const PageDocument = gql`
     title
     slug
     slices {
+      ...Spacer
+      ...Navbar
       ...Theme
       ...Schedule
       ...Seo
       ...Speakers
+      ...Live
     }
   }
 }
-    ${ThemeFragmentDoc}
+    ${SpacerFragmentDoc}
+${NavbarFragmentDoc}
+${ThemeFragmentDoc}
 ${ScheduleFragmentDoc}
 ${SeoFragmentDoc}
-${SpeakersFragmentDoc}`;
+${SpeakersFragmentDoc}
+${LiveFragmentDoc}`;
 
 /**
  * __usePageQuery__

@@ -17,6 +17,8 @@
     "@graphql-codegen/typescript-operations": "^2.2.1",
     "@graphql-codegen/typescript-react-apollo": "^3.2.0",
     "@graphql-codegen/typescript-resolvers": "^2.4.2",
+    "@headlessui/react": "^1.4.2",
+    "@heroicons/react": "^1.0.5",
     "@rehooks/window-size": "^1.0.2",
     "@splitbee/web": "^0.3.0",
     "@tailwindcss/aspect-ratio": "^0.3.0",

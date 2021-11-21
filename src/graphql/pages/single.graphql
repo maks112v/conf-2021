@@ -3,10 +3,13 @@ query Page($slug: String!) {
     title
     slug
     slices {
+      ...Spacer
+      ...Navbar
       ...Theme
       ...Schedule
       ...Seo
       ...Speakers
+      ...Live
     }
   }
 }
