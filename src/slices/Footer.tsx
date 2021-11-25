@@ -1,7 +1,7 @@
 import splitbee from '@splitbee/web';
 import Link from 'next/link';
 import React, { FunctionComponent } from 'react';
-import { RiGithubFill, RiInstagramFill } from 'react-icons/ri';
+import { RiGithubFill, RiInstagramFill, RiMapPin2Fill } from 'react-icons/ri';
 
 interface FooterSliceProps {}
 
@@ -26,6 +26,11 @@ const navigation = {
       name: 'GitHub',
       href: 'https://github.com/maks112v/conf-2021',
       icon: RiGithubFill,
+    },
+    {
+      name: 'Address',
+      href: 'https://goo.gl/maps/yDFLjoqxtPuA1DmZ9',
+      icon: RiMapPin2Fill,
     },
   ],
 };
