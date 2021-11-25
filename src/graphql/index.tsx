@@ -2249,6 +2249,8 @@ export type Mutation = {
   createNavbarMatter?: Maybe<NavbarMatter>;
   /** Create one page */
   createPage?: Maybe<Page>;
+  /** Create one questionSlice */
+  createQuestionSlice?: Maybe<QuestionSlice>;
   /** Create one scheduleSlice */
   createScheduleSlice?: Maybe<ScheduleSlice>;
   /** Create one scheduledRelease */
@@ -2314,6 +2316,13 @@ export type Mutation = {
   /** Delete many Page documents, return deleted documents */
   deleteManyPagesConnection: PageConnection;
   /**
+   * Delete many QuestionSlice documents
+   * @deprecated Please use the new paginated many mutation (deleteManyQuestionSlicesConnection)
+   */
+  deleteManyQuestionSlices: BatchPayload;
+  /** Delete many QuestionSlice documents, return deleted documents */
+  deleteManyQuestionSlicesConnection: QuestionSliceConnection;
+  /**
    * Delete many ScheduleSlice documents
    * @deprecated Please use the new paginated many mutation (deleteManyScheduleSlicesConnection)
    */
@@ -2359,6 +2368,8 @@ export type Mutation = {
   deleteNavbarMatter?: Maybe<NavbarMatter>;
   /** Delete one page from _all_ existing stages. Returns deleted document. */
   deletePage?: Maybe<Page>;
+  /** Delete one questionSlice from _all_ existing stages. Returns deleted document. */
+  deleteQuestionSlice?: Maybe<QuestionSlice>;
   /** Delete one scheduleSlice from _all_ existing stages. Returns deleted document. */
   deleteScheduleSlice?: Maybe<ScheduleSlice>;
   /** Delete and return scheduled operation */
@@ -2426,6 +2437,13 @@ export type Mutation = {
   /** Publish many Page documents */
   publishManyPagesConnection: PageConnection;
   /**
+   * Publish many QuestionSlice documents
+   * @deprecated Please use the new paginated many mutation (publishManyQuestionSlicesConnection)
+   */
+  publishManyQuestionSlices: BatchPayload;
+  /** Publish many QuestionSlice documents */
+  publishManyQuestionSlicesConnection: QuestionSliceConnection;
+  /**
    * Publish many ScheduleSlice documents
    * @deprecated Please use the new paginated many mutation (publishManyScheduleSlicesConnection)
    */
@@ -2471,6 +2489,8 @@ export type Mutation = {
   publishNavbarMatter?: Maybe<NavbarMatter>;
   /** Publish one page */
   publishPage?: Maybe<Page>;
+  /** Publish one questionSlice */
+  publishQuestionSlice?: Maybe<QuestionSlice>;
   /** Publish one scheduleSlice */
   publishScheduleSlice?: Maybe<ScheduleSlice>;
   /** Publish one seoSlice */
@@ -2495,6 +2515,8 @@ export type Mutation = {
   schedulePublishNavbarMatter?: Maybe<NavbarMatter>;
   /** Schedule to publish one page */
   schedulePublishPage?: Maybe<Page>;
+  /** Schedule to publish one questionSlice */
+  schedulePublishQuestionSlice?: Maybe<QuestionSlice>;
   /** Schedule to publish one scheduleSlice */
   schedulePublishScheduleSlice?: Maybe<ScheduleSlice>;
   /** Schedule to publish one seoSlice */
@@ -2519,6 +2541,8 @@ export type Mutation = {
   scheduleUnpublishNavbarMatter?: Maybe<NavbarMatter>;
   /** Unpublish one page from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishPage?: Maybe<Page>;
+  /** Unpublish one questionSlice from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishQuestionSlice?: Maybe<QuestionSlice>;
   /** Unpublish one scheduleSlice from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishScheduleSlice?: Maybe<ScheduleSlice>;
   /** Unpublish one seoSlice from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -2582,6 +2606,13 @@ export type Mutation = {
   /** Find many Page documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyPagesConnection: PageConnection;
   /**
+   * Unpublish many QuestionSlice documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyQuestionSlicesConnection)
+   */
+  unpublishManyQuestionSlices: BatchPayload;
+  /** Find many QuestionSlice documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyQuestionSlicesConnection: QuestionSliceConnection;
+  /**
    * Unpublish many ScheduleSlice documents
    * @deprecated Please use the new paginated many mutation (unpublishManyScheduleSlicesConnection)
    */
@@ -2627,6 +2658,8 @@ export type Mutation = {
   unpublishNavbarMatter?: Maybe<NavbarMatter>;
   /** Unpublish one page from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishPage?: Maybe<Page>;
+  /** Unpublish one questionSlice from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishQuestionSlice?: Maybe<QuestionSlice>;
   /** Unpublish one scheduleSlice from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishScheduleSlice?: Maybe<ScheduleSlice>;
   /** Unpublish one seoSlice from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -2690,6 +2723,13 @@ export type Mutation = {
   /** Update many Page documents */
   updateManyPagesConnection: PageConnection;
   /**
+   * Update many questionSlices
+   * @deprecated Please use the new paginated many mutation (updateManyQuestionSlicesConnection)
+   */
+  updateManyQuestionSlices: BatchPayload;
+  /** Update many QuestionSlice documents */
+  updateManyQuestionSlicesConnection: QuestionSliceConnection;
+  /**
    * Update many scheduleSlices
    * @deprecated Please use the new paginated many mutation (updateManyScheduleSlicesConnection)
    */
@@ -2735,6 +2775,8 @@ export type Mutation = {
   updateNavbarMatter?: Maybe<NavbarMatter>;
   /** Update one page */
   updatePage?: Maybe<Page>;
+  /** Update one questionSlice */
+  updateQuestionSlice?: Maybe<QuestionSlice>;
   /** Update one scheduleSlice */
   updateScheduleSlice?: Maybe<ScheduleSlice>;
   /** Update one scheduledRelease */
@@ -2761,6 +2803,8 @@ export type Mutation = {
   upsertNavbarMatter?: Maybe<NavbarMatter>;
   /** Upsert one page */
   upsertPage?: Maybe<Page>;
+  /** Upsert one questionSlice */
+  upsertQuestionSlice?: Maybe<QuestionSlice>;
   /** Upsert one scheduleSlice */
   upsertScheduleSlice?: Maybe<ScheduleSlice>;
   /** Upsert one seoSlice */
@@ -2803,6 +2847,11 @@ export type MutationCreateNavbarMatterArgs = {
 
 export type MutationCreatePageArgs = {
   data: PageCreateInput;
+};
+
+
+export type MutationCreateQuestionSliceArgs = {
+  data: QuestionSliceCreateInput;
 };
 
 
@@ -2951,6 +3000,21 @@ export type MutationDeleteManyPagesConnectionArgs = {
 };
 
 
+export type MutationDeleteManyQuestionSlicesArgs = {
+  where?: Maybe<QuestionSliceManyWhereInput>;
+};
+
+
+export type MutationDeleteManyQuestionSlicesConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<QuestionSliceManyWhereInput>;
+};
+
+
 export type MutationDeleteManyScheduleSlicesArgs = {
   where?: Maybe<ScheduleSliceManyWhereInput>;
 };
@@ -3048,6 +3112,11 @@ export type MutationDeleteNavbarMatterArgs = {
 
 export type MutationDeletePageArgs = {
   where: PageWhereUniqueInput;
+};
+
+
+export type MutationDeleteQuestionSliceArgs = {
+  where: QuestionSliceWhereUniqueInput;
 };
 
 
@@ -3232,6 +3301,24 @@ export type MutationPublishManyPagesConnectionArgs = {
 };
 
 
+export type MutationPublishManyQuestionSlicesArgs = {
+  to?: Array<Stage>;
+  where?: Maybe<QuestionSliceManyWhereInput>;
+};
+
+
+export type MutationPublishManyQuestionSlicesConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  first?: Maybe<Scalars['Int']>;
+  from?: Maybe<Stage>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  to?: Array<Stage>;
+  where?: Maybe<QuestionSliceManyWhereInput>;
+};
+
+
 export type MutationPublishManyScheduleSlicesArgs = {
   to?: Array<Stage>;
   where?: Maybe<ScheduleSliceManyWhereInput>;
@@ -3352,6 +3439,12 @@ export type MutationPublishPageArgs = {
 };
 
 
+export type MutationPublishQuestionSliceArgs = {
+  to?: Array<Stage>;
+  where: QuestionSliceWhereUniqueInput;
+};
+
+
 export type MutationPublishScheduleSliceArgs = {
   to?: Array<Stage>;
   where: ScheduleSliceWhereUniqueInput;
@@ -3436,6 +3529,14 @@ export type MutationSchedulePublishPageArgs = {
   releaseId?: Maybe<Scalars['String']>;
   to?: Array<Stage>;
   where: PageWhereUniqueInput;
+};
+
+
+export type MutationSchedulePublishQuestionSliceArgs = {
+  releaseAt?: Maybe<Scalars['DateTime']>;
+  releaseId?: Maybe<Scalars['String']>;
+  to?: Array<Stage>;
+  where: QuestionSliceWhereUniqueInput;
 };
 
 
@@ -3534,6 +3635,14 @@ export type MutationScheduleUnpublishPageArgs = {
   releaseAt?: Maybe<Scalars['DateTime']>;
   releaseId?: Maybe<Scalars['String']>;
   where: PageWhereUniqueInput;
+};
+
+
+export type MutationScheduleUnpublishQuestionSliceArgs = {
+  from?: Array<Stage>;
+  releaseAt?: Maybe<Scalars['DateTime']>;
+  releaseId?: Maybe<Scalars['String']>;
+  where: QuestionSliceWhereUniqueInput;
 };
 
 
@@ -3723,6 +3832,24 @@ export type MutationUnpublishManyPagesConnectionArgs = {
 };
 
 
+export type MutationUnpublishManyQuestionSlicesArgs = {
+  from?: Array<Stage>;
+  where?: Maybe<QuestionSliceManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyQuestionSlicesConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  first?: Maybe<Scalars['Int']>;
+  from?: Array<Stage>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  stage?: Maybe<Stage>;
+  where?: Maybe<QuestionSliceManyWhereInput>;
+};
+
+
 export type MutationUnpublishManyScheduleSlicesArgs = {
   from?: Array<Stage>;
   where?: Maybe<ScheduleSliceManyWhereInput>;
@@ -3840,6 +3967,12 @@ export type MutationUnpublishNavbarMatterArgs = {
 export type MutationUnpublishPageArgs = {
   from?: Array<Stage>;
   where: PageWhereUniqueInput;
+};
+
+
+export type MutationUnpublishQuestionSliceArgs = {
+  from?: Array<Stage>;
+  where: QuestionSliceWhereUniqueInput;
 };
 
 
@@ -4005,6 +4138,23 @@ export type MutationUpdateManyPagesConnectionArgs = {
 };
 
 
+export type MutationUpdateManyQuestionSlicesArgs = {
+  data: QuestionSliceUpdateManyInput;
+  where?: Maybe<QuestionSliceManyWhereInput>;
+};
+
+
+export type MutationUpdateManyQuestionSlicesConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  data: QuestionSliceUpdateManyInput;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<QuestionSliceManyWhereInput>;
+};
+
+
 export type MutationUpdateManyScheduleSlicesArgs = {
   data: ScheduleSliceUpdateManyInput;
   where?: Maybe<ScheduleSliceManyWhereInput>;
@@ -4119,6 +4269,12 @@ export type MutationUpdatePageArgs = {
 };
 
 
+export type MutationUpdateQuestionSliceArgs = {
+  data: QuestionSliceUpdateInput;
+  where: QuestionSliceWhereUniqueInput;
+};
+
+
 export type MutationUpdateScheduleSliceArgs = {
   data: ScheduleSliceUpdateInput;
   where: ScheduleSliceWhereUniqueInput;
@@ -4194,6 +4350,12 @@ export type MutationUpsertNavbarMatterArgs = {
 export type MutationUpsertPageArgs = {
   upsert: PageUpsertInput;
   where: PageWhereUniqueInput;
+};
+
+
+export type MutationUpsertQuestionSliceArgs = {
+  upsert: QuestionSliceUpsertInput;
+  where: QuestionSliceWhereUniqueInput;
 };
 
 
@@ -5013,12 +5175,13 @@ export enum PageOrderByInput {
   UpdatedAtDesc = 'updatedAt_DESC'
 }
 
-export type PageSlices = HeroSlice | LiveSlice | NavbarMatter | ScheduleSlice | SeoSlice | SpacerAtom | SpeakersSlice | ThemeSlice;
+export type PageSlices = HeroSlice | LiveSlice | NavbarMatter | QuestionSlice | ScheduleSlice | SeoSlice | SpacerAtom | SpeakersSlice | ThemeSlice;
 
 export type PageSlicesConnectInput = {
   HeroSlice?: Maybe<HeroSliceConnectInput>;
   LiveSlice?: Maybe<LiveSliceConnectInput>;
   NavbarMatter?: Maybe<NavbarMatterConnectInput>;
+  QuestionSlice?: Maybe<QuestionSliceConnectInput>;
   ScheduleSlice?: Maybe<ScheduleSliceConnectInput>;
   SeoSlice?: Maybe<SeoSliceConnectInput>;
   SpacerAtom?: Maybe<SpacerAtomConnectInput>;
@@ -5030,6 +5193,7 @@ export type PageSlicesCreateInput = {
   HeroSlice?: Maybe<HeroSliceCreateInput>;
   LiveSlice?: Maybe<LiveSliceCreateInput>;
   NavbarMatter?: Maybe<NavbarMatterCreateInput>;
+  QuestionSlice?: Maybe<QuestionSliceCreateInput>;
   ScheduleSlice?: Maybe<ScheduleSliceCreateInput>;
   SeoSlice?: Maybe<SeoSliceCreateInput>;
   SpacerAtom?: Maybe<SpacerAtomCreateInput>;
@@ -5055,6 +5219,7 @@ export type PageSlicesUpdateInput = {
   HeroSlice?: Maybe<HeroSliceUpdateInput>;
   LiveSlice?: Maybe<LiveSliceUpdateInput>;
   NavbarMatter?: Maybe<NavbarMatterUpdateInput>;
+  QuestionSlice?: Maybe<QuestionSliceUpdateInput>;
   ScheduleSlice?: Maybe<ScheduleSliceUpdateInput>;
   SeoSlice?: Maybe<SeoSliceUpdateInput>;
   SpacerAtom?: Maybe<SpacerAtomUpdateInput>;
@@ -5083,6 +5248,7 @@ export type PageSlicesUpdateManyWithNestedWhereInput = {
   HeroSlice?: Maybe<HeroSliceUpdateManyWithNestedWhereInput>;
   LiveSlice?: Maybe<LiveSliceUpdateManyWithNestedWhereInput>;
   NavbarMatter?: Maybe<NavbarMatterUpdateManyWithNestedWhereInput>;
+  QuestionSlice?: Maybe<QuestionSliceUpdateManyWithNestedWhereInput>;
   ScheduleSlice?: Maybe<ScheduleSliceUpdateManyWithNestedWhereInput>;
   SeoSlice?: Maybe<SeoSliceUpdateManyWithNestedWhereInput>;
   SpacerAtom?: Maybe<SpacerAtomUpdateManyWithNestedWhereInput>;
@@ -5109,6 +5275,7 @@ export type PageSlicesUpdateWithNestedWhereUniqueInput = {
   HeroSlice?: Maybe<HeroSliceUpdateWithNestedWhereUniqueInput>;
   LiveSlice?: Maybe<LiveSliceUpdateWithNestedWhereUniqueInput>;
   NavbarMatter?: Maybe<NavbarMatterUpdateWithNestedWhereUniqueInput>;
+  QuestionSlice?: Maybe<QuestionSliceUpdateWithNestedWhereUniqueInput>;
   ScheduleSlice?: Maybe<ScheduleSliceUpdateWithNestedWhereUniqueInput>;
   SeoSlice?: Maybe<SeoSliceUpdateWithNestedWhereUniqueInput>;
   SpacerAtom?: Maybe<SpacerAtomUpdateWithNestedWhereUniqueInput>;
@@ -5120,6 +5287,7 @@ export type PageSlicesUpsertWithNestedWhereUniqueInput = {
   HeroSlice?: Maybe<HeroSliceUpsertWithNestedWhereUniqueInput>;
   LiveSlice?: Maybe<LiveSliceUpsertWithNestedWhereUniqueInput>;
   NavbarMatter?: Maybe<NavbarMatterUpsertWithNestedWhereUniqueInput>;
+  QuestionSlice?: Maybe<QuestionSliceUpsertWithNestedWhereUniqueInput>;
   ScheduleSlice?: Maybe<ScheduleSliceUpsertWithNestedWhereUniqueInput>;
   SeoSlice?: Maybe<SeoSliceUpsertWithNestedWhereUniqueInput>;
   SpacerAtom?: Maybe<SpacerAtomUpsertWithNestedWhereUniqueInput>;
@@ -5131,6 +5299,7 @@ export type PageSlicesWhereInput = {
   HeroSlice?: Maybe<HeroSliceWhereInput>;
   LiveSlice?: Maybe<LiveSliceWhereInput>;
   NavbarMatter?: Maybe<NavbarMatterWhereInput>;
+  QuestionSlice?: Maybe<QuestionSliceWhereInput>;
   ScheduleSlice?: Maybe<ScheduleSliceWhereInput>;
   SeoSlice?: Maybe<SeoSliceWhereInput>;
   SpacerAtom?: Maybe<SpacerAtomWhereInput>;
@@ -5142,6 +5311,7 @@ export type PageSlicesWhereUniqueInput = {
   HeroSlice?: Maybe<HeroSliceWhereUniqueInput>;
   LiveSlice?: Maybe<LiveSliceWhereUniqueInput>;
   NavbarMatter?: Maybe<NavbarMatterWhereUniqueInput>;
+  QuestionSlice?: Maybe<QuestionSliceWhereUniqueInput>;
   ScheduleSlice?: Maybe<ScheduleSliceWhereUniqueInput>;
   SeoSlice?: Maybe<SeoSliceWhereUniqueInput>;
   SpacerAtom?: Maybe<SpacerAtomWhereUniqueInput>;
@@ -5408,6 +5578,14 @@ export type Query = {
   pages: Array<Page>;
   /** Retrieve multiple pages using the Relay connection interface */
   pagesConnection: PageConnection;
+  /** Retrieve a single questionSlice */
+  questionSlice?: Maybe<QuestionSlice>;
+  /** Retrieve document version */
+  questionSliceVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple questionSlices */
+  questionSlices: Array<QuestionSlice>;
+  /** Retrieve multiple questionSlices using the Relay connection interface */
+  questionSlicesConnection: QuestionSliceConnection;
   /** Retrieve a single scheduleSlice */
   scheduleSlice?: Maybe<ScheduleSlice>;
   /** Retrieve document version */
@@ -5709,6 +5887,44 @@ export type QueryPagesConnectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   stage?: Stage;
   where?: Maybe<PageWhereInput>;
+};
+
+
+export type QueryQuestionSliceArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: QuestionSliceWhereUniqueInput;
+};
+
+
+export type QueryQuestionSliceVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryQuestionSlicesArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: Maybe<QuestionSliceOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: Maybe<QuestionSliceWhereInput>;
+};
+
+
+export type QueryQuestionSlicesConnectionArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: Maybe<QuestionSliceOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: Maybe<QuestionSliceWhereInput>;
 };
 
 
@@ -6036,6 +6252,426 @@ export type QueryUsersConnectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   stage?: Stage;
   where?: Maybe<UserWhereInput>;
+};
+
+export type QuestionSlice = Node & {
+  __typename?: 'QuestionSlice';
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<QuestionSlice>;
+  /** List of QuestionSlice versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  pages: Array<Page>;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  title?: Maybe<Scalars['String']>;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type QuestionSliceCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type QuestionSliceDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+export type QuestionSliceHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: Maybe<Stage>;
+};
+
+
+export type QuestionSlicePagesArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<PageWhereInput>;
+};
+
+
+export type QuestionSlicePublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type QuestionSliceScheduledInArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<ScheduledOperationWhereInput>;
+};
+
+
+export type QuestionSliceUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+export type QuestionSliceConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: QuestionSliceWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type QuestionSliceConnection = {
+  __typename?: 'QuestionSliceConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<QuestionSliceEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type QuestionSliceCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  pages?: Maybe<PageCreateManyInlineInput>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type QuestionSliceCreateManyInlineInput = {
+  /** Connect multiple existing QuestionSlice documents */
+  connect?: Maybe<Array<QuestionSliceWhereUniqueInput>>;
+  /** Create and connect multiple existing QuestionSlice documents */
+  create?: Maybe<Array<QuestionSliceCreateInput>>;
+};
+
+export type QuestionSliceCreateOneInlineInput = {
+  /** Connect one existing QuestionSlice document */
+  connect?: Maybe<QuestionSliceWhereUniqueInput>;
+  /** Create and connect one QuestionSlice document */
+  create?: Maybe<QuestionSliceCreateInput>;
+};
+
+/** An edge in a connection. */
+export type QuestionSliceEdge = {
+  __typename?: 'QuestionSliceEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: QuestionSlice;
+};
+
+/** Identifies documents */
+export type QuestionSliceManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<QuestionSliceWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<QuestionSliceWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<QuestionSliceWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  createdBy?: Maybe<UserWhereInput>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  pages_every?: Maybe<PageWhereInput>;
+  pages_none?: Maybe<PageWhereInput>;
+  pages_some?: Maybe<PageWhereInput>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  publishedBy?: Maybe<UserWhereInput>;
+  scheduledIn_every?: Maybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: Maybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: Maybe<ScheduledOperationWhereInput>;
+  title?: Maybe<Scalars['String']>;
+  /** All values containing the given string. */
+  title_contains?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  title_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  title_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  title_not?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  title_not_contains?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  title_starts_with?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  updatedBy?: Maybe<UserWhereInput>;
+};
+
+export enum QuestionSliceOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type QuestionSliceUpdateInput = {
+  pages?: Maybe<PageUpdateManyInlineInput>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type QuestionSliceUpdateManyInlineInput = {
+  /** Connect multiple existing QuestionSlice documents */
+  connect?: Maybe<Array<QuestionSliceConnectInput>>;
+  /** Create and connect multiple QuestionSlice documents */
+  create?: Maybe<Array<QuestionSliceCreateInput>>;
+  /** Delete multiple QuestionSlice documents */
+  delete?: Maybe<Array<QuestionSliceWhereUniqueInput>>;
+  /** Disconnect multiple QuestionSlice documents */
+  disconnect?: Maybe<Array<QuestionSliceWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing QuestionSlice documents */
+  set?: Maybe<Array<QuestionSliceWhereUniqueInput>>;
+  /** Update multiple QuestionSlice documents */
+  update?: Maybe<Array<QuestionSliceUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple QuestionSlice documents */
+  upsert?: Maybe<Array<QuestionSliceUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type QuestionSliceUpdateManyInput = {
+  title?: Maybe<Scalars['String']>;
+};
+
+export type QuestionSliceUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: QuestionSliceUpdateManyInput;
+  /** Document search */
+  where: QuestionSliceWhereInput;
+};
+
+export type QuestionSliceUpdateOneInlineInput = {
+  /** Connect existing QuestionSlice document */
+  connect?: Maybe<QuestionSliceWhereUniqueInput>;
+  /** Create and connect one QuestionSlice document */
+  create?: Maybe<QuestionSliceCreateInput>;
+  /** Delete currently connected QuestionSlice document */
+  delete?: Maybe<Scalars['Boolean']>;
+  /** Disconnect currently connected QuestionSlice document */
+  disconnect?: Maybe<Scalars['Boolean']>;
+  /** Update single QuestionSlice document */
+  update?: Maybe<QuestionSliceUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single QuestionSlice document */
+  upsert?: Maybe<QuestionSliceUpsertWithNestedWhereUniqueInput>;
+};
+
+export type QuestionSliceUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: QuestionSliceUpdateInput;
+  /** Unique document search */
+  where: QuestionSliceWhereUniqueInput;
+};
+
+export type QuestionSliceUpsertInput = {
+  /** Create document if it didn't exist */
+  create: QuestionSliceCreateInput;
+  /** Update document if it exists */
+  update: QuestionSliceUpdateInput;
+};
+
+export type QuestionSliceUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: QuestionSliceUpsertInput;
+  /** Unique document search */
+  where: QuestionSliceWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type QuestionSliceWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<QuestionSliceWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<QuestionSliceWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<QuestionSliceWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  createdBy?: Maybe<UserWhereInput>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  pages_every?: Maybe<PageWhereInput>;
+  pages_none?: Maybe<PageWhereInput>;
+  pages_some?: Maybe<PageWhereInput>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  publishedBy?: Maybe<UserWhereInput>;
+  scheduledIn_every?: Maybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: Maybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: Maybe<ScheduledOperationWhereInput>;
+  title?: Maybe<Scalars['String']>;
+  /** All values containing the given string. */
+  title_contains?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  title_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  title_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  title_not?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  title_not_contains?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  title_starts_with?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  updatedBy?: Maybe<UserWhereInput>;
+};
+
+/** References QuestionSlice record uniquely */
+export type QuestionSliceWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>;
 };
 
 /** Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
@@ -6586,7 +7222,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: Maybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Event | HeroSlice | LiveSlice | NavbarMatter | Page | ScheduleSlice | SeoSlice | SpacerAtom | Speaker | SpeakersSlice | ThemeSlice;
+export type ScheduledOperationAffectedDocument = Asset | Event | HeroSlice | LiveSlice | NavbarMatter | Page | QuestionSlice | ScheduleSlice | SeoSlice | SpacerAtom | Speaker | SpeakersSlice | ThemeSlice;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -10334,9 +10970,11 @@ export type PageQueryVariables = Exact<{
 }>;
 
 
-export type PageQuery = { __typename?: 'Query', page?: { __typename?: 'Page', title?: string | null | undefined, slug: string, slices: Array<{ __typename?: 'HeroSlice' } | { __typename?: 'LiveSlice', id: string, title?: string | null | undefined, embed?: string | null | undefined } | { __typename?: 'NavbarMatter', id: string, logo?: { __typename?: 'Asset', url: string } | null | undefined, items: Array<{ __typename?: 'Page', id: string, slug: string, title?: string | null | undefined }> } | { __typename?: 'ScheduleSlice', id: string, title?: string | null | undefined, events: Array<{ __typename?: 'Event', id: string, title?: string | null | undefined, subtitle?: string | null | undefined, startTime?: any | null | undefined, endTime?: any | null | undefined }> } | { __typename?: 'SeoSlice', id: string, title?: string | null | undefined, images: Array<{ __typename?: 'Asset', id: string, height?: number | null | undefined, width?: number | null | undefined, url: string }> } | { __typename?: 'SpacerAtom', id: string, height?: number | null | undefined } | { __typename?: 'SpeakersSlice', id: string, subtitle?: string | null | undefined, title?: string | null | undefined, speakers: Array<{ __typename?: 'Speaker', id: string, name?: string | null | undefined, location?: string | null | undefined, image?: { __typename?: 'Asset', url: string, width?: number | null | undefined, height?: number | null | undefined } | null | undefined }> } | { __typename?: 'ThemeSlice', id: string, embed?: string | null | undefined, title?: string | null | undefined, subtitle?: string | null | undefined }> } | null | undefined };
+export type PageQuery = { __typename?: 'Query', page?: { __typename?: 'Page', title?: string | null | undefined, slug: string, slices: Array<{ __typename?: 'HeroSlice' } | { __typename?: 'LiveSlice', id: string, title?: string | null | undefined, embed?: string | null | undefined } | { __typename?: 'NavbarMatter', id: string, logo?: { __typename?: 'Asset', url: string } | null | undefined, items: Array<{ __typename?: 'Page', id: string, slug: string, title?: string | null | undefined }> } | { __typename?: 'QuestionSlice', id: string, title?: string | null | undefined } | { __typename?: 'ScheduleSlice', id: string, title?: string | null | undefined, events: Array<{ __typename?: 'Event', id: string, title?: string | null | undefined, subtitle?: string | null | undefined, startTime?: any | null | undefined, endTime?: any | null | undefined }> } | { __typename?: 'SeoSlice', id: string, title?: string | null | undefined, images: Array<{ __typename?: 'Asset', id: string, height?: number | null | undefined, width?: number | null | undefined, url: string }> } | { __typename?: 'SpacerAtom', id: string, height?: number | null | undefined } | { __typename?: 'SpeakersSlice', id: string, subtitle?: string | null | undefined, title?: string | null | undefined, speakers: Array<{ __typename?: 'Speaker', id: string, name?: string | null | undefined, location?: string | null | undefined, image?: { __typename?: 'Asset', url: string, width?: number | null | undefined, height?: number | null | undefined } | null | undefined }> } | { __typename?: 'ThemeSlice', id: string, embed?: string | null | undefined, title?: string | null | undefined, subtitle?: string | null | undefined }> } | null | undefined };
 
 export type LiveFragment = { __typename?: 'LiveSlice', id: string, title?: string | null | undefined, embed?: string | null | undefined };
+
+export type QuestionFragment = { __typename?: 'QuestionSlice', id: string, title?: string | null | undefined };
 
 export type ScheduleFragment = { __typename?: 'ScheduleSlice', id: string, title?: string | null | undefined, events: Array<{ __typename?: 'Event', id: string, title?: string | null | undefined, subtitle?: string | null | undefined, startTime?: any | null | undefined, endTime?: any | null | undefined }> };
 
@@ -10372,6 +11010,12 @@ export const LiveFragmentDoc = gql`
   id
   title
   embed
+}
+    `;
+export const QuestionFragmentDoc = gql`
+    fragment Question on QuestionSlice {
+  id
+  title
 }
     `;
 export const ScheduleFragmentDoc = gql`
@@ -10472,6 +11116,7 @@ export const PageDocument = gql`
       ...Seo
       ...Speakers
       ...Live
+      ...Question
     }
   }
 }
@@ -10481,7 +11126,8 @@ ${ThemeFragmentDoc}
 ${ScheduleFragmentDoc}
 ${SeoFragmentDoc}
 ${SpeakersFragmentDoc}
-${LiveFragmentDoc}`;
+${LiveFragmentDoc}
+${QuestionFragmentDoc}`;
 
 /**
  * __usePageQuery__

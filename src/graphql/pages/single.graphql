@@ -10,6 +10,7 @@ query Page($slug: String!) {
       ...Seo
       ...Speakers
       ...Live
+      ...Question
     }
   }
 }

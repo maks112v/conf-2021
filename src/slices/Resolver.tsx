@@ -4,6 +4,7 @@ import React, { FunctionComponent } from 'react';
 import { HeroSlice } from './Hero';
 import { LiveSlice } from './Live';
 import { Navbar } from './Navbar';
+import { QuestionsSlice } from './Questions';
 import { ScheduleSlice } from './Schedule';
 import { SpeakersSlice } from './Speakers';
 import { ThemeSlice } from './Theme';
@@ -46,6 +47,8 @@ export const SliceResolver: FunctionComponent<SliceResolverProps> = ({
             return <Navbar {...slice} />;
           case 'SpacerAtom':
             return <div style={{ height: slice?.height as number }} />;
+          case 'QuestionSlice':
+            return <QuestionsSlice />;
           default:
             return null;
         }

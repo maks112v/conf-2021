@@ -41,7 +41,7 @@ export default async function handler(
         ?.filter((item) => !!item)}`,
     });
     res.end();
+  } else {
+    throw new Error('Invalid Type');
   }
-
-  throw new Error('Invalid Type');
 }
