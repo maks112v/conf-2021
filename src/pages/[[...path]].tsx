@@ -23,7 +23,6 @@ const PageBuilder: FunctionComponent<PageBuilderProps> = ({
   title,
   slices,
 }) => {
-  console.log(slices);
   return (
     <>
       {/* <Navbar /> */}
@@ -95,8 +94,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  console.log(ctx);
-
   if (ctx?.preview) {
     const link = createHttpLink({
       uri: process.env.NEXT_PUBLIC_GRAPH_CMS,

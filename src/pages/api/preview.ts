@@ -7,7 +7,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
-  console.log(req.query);
   const link = createHttpLink({
     uri: process.env.NEXT_PUBLIC_GRAPH_CMS,
     headers: {
@@ -24,8 +23,6 @@ export default async function handler(
         slug: req.query.slug as string,
       },
     });
-
-    console.log(pageRes);
 
     if (!pageRes.data.page) {
       return res.status(404).json({ message: 'Page Not Found' });
