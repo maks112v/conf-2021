@@ -10,15 +10,15 @@ export const showNavBar = makeVar(true);
 export const Navbar: FunctionComponent<NavbarProps> = ({ logo, items }) => {
   return (
     <Transition show={showNavBar()}>
-      <div className='fixed left-0 right-0 z-50 px-4 top-3 lg:px-0'>
-        <div className='flex items-center w-full p-4 mx-auto my-2 bg-white bg-opacity-50 rounded backdrop-filter backdrop-blur-md max-w-7xl'>
+      <div className='fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-60 backdrop-filter backdrop-blur-md'>
+        <div className='container flex items-center w-full py-3 mx-auto my-2'>
           <Link href='/'>
             <a className='duration-200 cursor-pointer hover:opacity-60'>
               <img src={logo?.url} className='w-10 h-10' />
             </a>
           </Link>
           <div className='flex-1' />
-          <div className='flex items-center space-x-4'>
+          <div className='flex items-center space-x-4 md:space-x-8 lg:space-x-12'>
             {items?.map((item) =>
               item?.__typename === 'Page' ? (
                 <Link key={item?.id} href={item?.slug} passHref>
