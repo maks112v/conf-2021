@@ -103,74 +103,8 @@ export const ScheduleSlice: FunctionComponent<ScheduleSliceProps> = ({
       </div>
       <div className='grid gap-4 py-5 md:grid-cols-2 lg:grid-cols-3'>
         {days?.[selected || 0]?.map((item, idx, arr) => {
-          const nextEvent = arr[idx + 1];
-
-          const endTime = item?.endTime || nextEvent?.startTime;
-
-          const isBetween = dayjs().isBetween(item?.startTime, endTime);
-
-          const diff = dayjs(item?.startTime).diff(dayjs(), 'minutes');
-
-          const isSoon = diff > 0 && diff < 60;
-
           return (
             <ScheduleItem key={`${item?.id}-${idx}`} data={[item, idx, arr]} />
-          );
-
-          return (
-            <div
-              key={`${item?.id}-${idx}`}
-              className={classNames(
-                isSoon ? 'border-yellow-400' : isBetween && 'border-blue-400',
-                'p-4 space-y-4 border-2 flex flex-col border-gray-200 rounded'
-              )}
-            >
-              {isBetween ? (
-                <div>
-                  <Badge variant='blue'>Current</Badge>
-                </div>
-              ) : diff < 0 ? (
-                <div>
-                  <Badge variant='gray'>Ended</Badge>
-                </div>
-              ) : (
-                isSoon && (
-                  <div>
-                    <Badge variant='yellow' className='capitalize'>
-                      {dayjs(item?.startTime).fromNow()}
-                    </Badge>
-                  </div>
-                )
-              )}
-              <div className='flex flex-col flex-1 space-y-1'>
-                <h4 className='text-2xl font-bold text-gray-900'>
-                  {item?.title}
-                </h4>
-                {item?.subtitle && (
-                  <p className='text-gray-600'>{item?.subtitle}</p>
-                )}
-              </div>
-              <div className='flex items-center space-x-2'>
-                <RiTimeLine
-                  className={classNames(
-                    isSoon
-                      ? 'text-yellow-500'
-                      : diff > 0 || isBetween
-                      ? 'text-blue-500'
-                      : 'text-gray-600',
-                    'w-5 h-5 '
-                  )}
-                />
-                <p className='font-bold text-gray-800'>
-                  {[
-                    dayjs(item?.startTime)?.format('hh:mm a'),
-                    endTime && dayjs(endTime)?.format('hh:mm a'),
-                  ]
-                    ?.filter((item) => !!item)
-                    ?.join(' - ')}
-                </p>
-              </div>
-            </div>
           );
         })}
       </div>
@@ -193,9 +127,16 @@ export const ScheduleItem: FunctionComponent<ScheduleItemProps> = ({
 
   const endTime = item?.endTime || nextEvent?.startTime;
 
-  const isBetween = dayjs().isBetween(item?.startTime, endTime);
+  const { isBetween, isSoon } = React.useMemo(() => {
+    const isBetween = dayjs().isBetween(item?.startTime, endTime);
 
-  const isSoon = diff > 0 && diff < 60;
+    const isSoon = diff > 0 && diff < 60;
+
+    return {
+      isBetween,
+      isSoon,
+    };
+  }, [diff]);
 
   const getDiff = () => {
     setDiff(dayjs(item?.startTime).diff(dayjs(), 'minutes'));
