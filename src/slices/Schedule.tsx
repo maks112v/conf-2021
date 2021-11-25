@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import _ from 'lodash';
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { RiTimeLine } from 'react-icons/ri';
 
 dayjs.extend(isBetween);
@@ -114,8 +114,12 @@ export const ScheduleSlice: FunctionComponent<ScheduleSliceProps> = ({
           const isSoon = diff > 0 && diff < 60;
 
           return (
+            <ScheduleItem key={`${item?.id}-${idx}`} data={[item, idx, arr]} />
+          );
+
+          return (
             <div
-              key={item?.id}
+              key={`${item?.id}-${idx}`}
               className={classNames(
                 isSoon ? 'border-yellow-400' : isBetween && 'border-blue-400',
                 'p-4 space-y-4 border-2 flex flex-col border-gray-200 rounded'
@@ -169,6 +173,93 @@ export const ScheduleSlice: FunctionComponent<ScheduleSliceProps> = ({
             </div>
           );
         })}
+      </div>
+    </div>
+  );
+};
+
+interface ScheduleItemProps {
+  data: [ScheduleFragment['events'][0], number, ScheduleFragment['events']];
+}
+
+export const ScheduleItem: FunctionComponent<ScheduleItemProps> = ({
+  data: [item, idx, arr],
+}) => {
+  const [diff, setDiff] = useState(
+    dayjs(item?.startTime).diff(dayjs(), 'minutes')
+  );
+  const [fromNow, setFromNow] = useState(dayjs(item?.startTime).fromNow());
+  const nextEvent = arr[idx + 1];
+
+  const endTime = item?.endTime || nextEvent?.startTime;
+
+  const isBetween = dayjs().isBetween(item?.startTime, endTime);
+
+  const isSoon = diff > 0 && diff < 60;
+
+  const getDiff = () => {
+    setDiff(dayjs(item?.startTime).diff(dayjs(), 'minutes'));
+    setFromNow(dayjs(item?.startTime).fromNow());
+  };
+
+  useEffect(() => {
+    let timer: any;
+    if (isSoon || isBetween) {
+      timer = setInterval(() => {
+        getDiff();
+      }, 5000);
+    }
+    return () => clearInterval(timer);
+  }, [isSoon, isBetween]);
+
+  return (
+    <div
+      key={`${item?.id}-${idx}`}
+      className={classNames(
+        isSoon ? 'border-yellow-400' : isBetween && 'border-blue-400',
+        'p-4 space-y-4 border-2 flex flex-col border-gray-200 rounded'
+      )}
+    >
+      {isBetween ? (
+        <div>
+          <Badge variant='blue'>Current</Badge>
+        </div>
+      ) : diff < 0 ? (
+        <div>
+          <Badge variant='gray'>Ended</Badge>
+        </div>
+      ) : (
+        isSoon && (
+          <div>
+            <Badge variant='yellow' className='capitalize'>
+              {fromNow}
+            </Badge>
+          </div>
+        )
+      )}
+      <div className='flex flex-col flex-1 space-y-1'>
+        <h4 className='text-2xl font-bold text-gray-900'>{item?.title}</h4>
+        {item?.subtitle && <p className='text-gray-600'>{item?.subtitle}</p>}
+      </div>
+      <div className='flex items-center space-x-2'>
+        <RiTimeLine
+          className={classNames(
+            isSoon
+              ? 'text-yellow-500'
+              : diff > 0 || isBetween
+              ? 'text-blue-500'
+              : 'text-gray-600',
+            'w-5 h-5 '
+          )}
+        />
+        <p className='font-bold text-gray-800'>
+          {[
+            dayjs(item?.startTime)?.format('hh:mm a'),
+            endTime && dayjs(endTime)?.format('hh:mm a'),
+          ]
+            ?.filter((item) => !!item)
+            ?.join(' - ')}
+        </p>
       </div>
     </div>
   );
