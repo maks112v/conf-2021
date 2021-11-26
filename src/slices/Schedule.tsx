@@ -142,20 +142,38 @@ export const ScheduleItem: FunctionComponent<ScheduleItemProps> = ({
     };
   }, [diff]);
 
-  console.log({ diff, isBetween, isSoon, endTime, fromNow });
+  console.log({
+    diff,
+    isBetween,
+    isSoon,
+    endTime,
+    fromNow,
+    next: dayjs(item?.startTime).diff(dayjs(), 'seconds'),
+  });
 
   const getDiff = () => {
     setDiff(dayjs(item?.startTime).diff(dayjs(), 'minutes'));
   };
 
   useEffect(() => {
+    let timeout: any;
     let timer: any;
     if (isSoon || isBetween) {
-      timer = setInterval(() => {
+      timeout = setInterval(() => {
         getDiff();
       }, 1000);
+    } else {
+      const startsIn = dayjs(item?.startTime).diff(dayjs(), 'seconds') + 1;
+      if (startsIn > 0) {
+        timer = setTimeout(() => {
+          getDiff();
+        }, startsIn);
+      }
     }
-    return () => clearInterval(timer);
+    return () => {
+      clearInterval(timeout);
+      clearTimeout(timer);
+    };
   }, [isSoon, isBetween]);
 
   return (
