@@ -1,13 +1,18 @@
 import { PageSlices } from '#graphql';
 import { NextSeo } from 'next-seo';
+import dynamic from 'next/dynamic';
 import React, { FunctionComponent } from 'react';
 import { HeroSlice } from './Hero';
 import { LiveSlice } from './Live';
 import { Navbar } from './Navbar';
 import { QuestionsSlice } from './Questions';
-import { ScheduleSlice } from './Schedule';
 import { SpeakersSlice } from './Speakers';
 import { ThemeSlice } from './Theme';
+
+const ScheduleSlice: any = dynamic(
+  () => import('./Schedule').then((mod) => mod.ScheduleSlice) as any,
+  { ssr: false }
+);
 
 interface SliceResolverProps {
   slices: PageSlices[];
