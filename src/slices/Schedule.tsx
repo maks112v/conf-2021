@@ -122,25 +122,30 @@ export const ScheduleItem: FunctionComponent<ScheduleItemProps> = ({
   const [diff, setDiff] = useState(
     dayjs(item?.startTime).diff(dayjs(), 'minutes')
   );
-  const [fromNow, setFromNow] = useState(dayjs(item?.startTime).fromNow());
-  const nextEvent = arr[idx + 1];
 
-  const endTime = item?.endTime || nextEvent?.startTime;
+  const { isBetween, isSoon, endTime, fromNow } = React.useMemo(() => {
+    const nextEvent = arr[idx + 1];
 
-  const { isBetween, isSoon } = React.useMemo(() => {
+    const endTime = item?.endTime || nextEvent?.startTime;
+
     const isBetween = dayjs().isBetween(item?.startTime, endTime);
 
     const isSoon = diff > 0 && diff < 60;
 
+    const fromNow = dayjs(item?.startTime).fromNow();
+
     return {
       isBetween,
       isSoon,
+      endTime,
+      fromNow,
     };
   }, [diff]);
 
+  console.log({ diff, isBetween, isSoon, endTime, fromNow });
+
   const getDiff = () => {
     setDiff(dayjs(item?.startTime).diff(dayjs(), 'minutes'));
-    setFromNow(dayjs(item?.startTime).fromNow());
   };
 
   useEffect(() => {
@@ -148,7 +153,7 @@ export const ScheduleItem: FunctionComponent<ScheduleItemProps> = ({
     if (isSoon || isBetween) {
       timer = setInterval(() => {
         getDiff();
-      }, 5000);
+      }, 1000);
     }
     return () => clearInterval(timer);
   }, [isSoon, isBetween]);
@@ -163,16 +168,24 @@ export const ScheduleItem: FunctionComponent<ScheduleItemProps> = ({
     >
       {isBetween ? (
         <div>
-          <Badge variant='blue'>Current</Badge>
+          <Badge key={`${item?.id}-current`} variant='blue'>
+            Current
+          </Badge>
         </div>
       ) : diff < 0 ? (
         <div>
-          <Badge variant='gray'>Ended</Badge>
+          <Badge key={`${item?.id}-ended`} variant='gray'>
+            Ended
+          </Badge>
         </div>
       ) : (
         isSoon && (
           <div>
-            <Badge variant='yellow' className='capitalize'>
+            <Badge
+              key={`${item?.id}-next`}
+              variant='yellow'
+              className='capitalize'
+            >
               {fromNow}
             </Badge>
           </div>
