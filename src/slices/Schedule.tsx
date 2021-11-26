@@ -167,31 +167,26 @@ export const ScheduleItem: FunctionComponent<ScheduleItemProps> = ({
       )}
     >
       {isBetween ? (
-        <div>
-          <Badge key={`${item?.id}-current`} variant='blue'>
-            Current
-          </Badge>
+        <div key={`${item?.id}-current`}>
+          <Badge variant='blue'>Current</Badge>
         </div>
       ) : diff < 0 ? (
-        <div>
-          <Badge key={`${item?.id}-ended`} variant='gray'>
-            Ended
-          </Badge>
+        <div key={`${item?.id}-ended`}>
+          <Badge variant='gray'>Ended</Badge>
         </div>
       ) : (
         isSoon && (
-          <div>
-            <Badge
-              key={`${item?.id}-next`}
-              variant='yellow'
-              className='capitalize'
-            >
+          <div key={`${item?.id}-next`}>
+            <Badge variant='yellow' className='capitalize'>
               {fromNow}
             </Badge>
           </div>
         )
       )}
-      <div className='flex flex-col flex-1 space-y-1'>
+      <div
+        key={`${item?.id}-content`}
+        className='flex flex-col flex-1 space-y-1'
+      >
         <h4 className='text-2xl font-bold text-gray-900'>{item?.title}</h4>
         {item?.subtitle && <p className='text-gray-600'>{item?.subtitle}</p>}
       </div>
