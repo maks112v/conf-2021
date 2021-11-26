@@ -65,7 +65,7 @@ export const ScheduleSlice: FunctionComponent<ScheduleSliceProps> = ({
               return (
                 <button
                   onClick={() => setSelected(Number(date))}
-                  key={date}
+                  key={date as string}
                   className={classNames(
                     selected === Number(date) ? 'border-blue-400' : '',
                     'whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm flex flex-col items-center'
@@ -166,23 +166,19 @@ export const ScheduleItem: FunctionComponent<ScheduleItemProps> = ({
         'p-4 space-y-4 border-2 flex flex-col border-gray-200 rounded'
       )}
     >
-      {isBetween ? (
-        <div key={`${item?.id}-current`}>
+      <div>
+        {isBetween ? (
           <Badge variant='blue'>Current</Badge>
-        </div>
-      ) : diff < 0 ? (
-        <div key={`${item?.id}-ended`}>
+        ) : diff < 0 ? (
           <Badge variant='gray'>Ended</Badge>
-        </div>
-      ) : (
-        isSoon && (
-          <div key={`${item?.id}-next`}>
+        ) : (
+          isSoon && (
             <Badge variant='yellow' className='capitalize'>
               {fromNow}
             </Badge>
-          </div>
-        )
-      )}
+          )
+        )}
+      </div>
       <div
         key={`${item?.id}-content`}
         className='flex flex-col flex-1 space-y-1'
