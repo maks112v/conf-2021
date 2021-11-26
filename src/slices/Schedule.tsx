@@ -215,7 +215,6 @@ export const ScheduleItem: FunctionComponent<ScheduleItemProps> = ({
           )}
           {[
             item?.maybe ? null : dayjs(item?.startTime)?.format('hh:mm a'),
-            ,
             endTime && dayjs(endTime)?.format('hh:mm a'),
           ]
             ?.filter((item) => !!item)
