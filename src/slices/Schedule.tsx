@@ -206,8 +206,16 @@ export const ScheduleItem: FunctionComponent<ScheduleItemProps> = ({
           )}
         />
         <p className='font-bold text-gray-800'>
+          {item?.maybe && (
+            <span>
+              {dayjs(item?.startTime)?.format('hh:mm')}
+              <span className='text-sm text-gray-400'>ish</span>{' '}
+              {dayjs(item?.startTime)?.format('a')} -{' '}
+            </span>
+          )}
           {[
-            dayjs(item?.startTime)?.format('hh:mm a'),
+            item?.maybe ? null : dayjs(item?.startTime)?.format('hh:mm a'),
+            ,
             endTime && dayjs(endTime)?.format('hh:mm a'),
           ]
             ?.filter((item) => !!item)

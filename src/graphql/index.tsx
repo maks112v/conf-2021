@@ -833,6 +833,7 @@ export type Event = Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID'];
+  maybe?: Maybe<Scalars['Boolean']>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** User that last published this document */
@@ -910,6 +911,7 @@ export type EventCreateInput = {
   ckv5qd5q93www01zd68ayb8af?: Maybe<ScheduleSliceCreateManyInlineInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   endTime?: Maybe<Scalars['DateTime']>;
+  maybe?: Maybe<Scalars['Boolean']>;
   startTime?: Maybe<Scalars['DateTime']>;
   subtitle?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -999,6 +1001,9 @@ export type EventManyWhereInput = {
   id_not_starts_with?: Maybe<Scalars['ID']>;
   /** All values starting with the given string. */
   id_starts_with?: Maybe<Scalars['ID']>;
+  maybe?: Maybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  maybe_not?: Maybe<Scalars['Boolean']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
@@ -1096,6 +1101,8 @@ export enum EventOrderByInput {
   EndTimeDesc = 'endTime_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
+  MaybeAsc = 'maybe_ASC',
+  MaybeDesc = 'maybe_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
   StartTimeAsc = 'startTime_ASC',
@@ -1111,6 +1118,7 @@ export enum EventOrderByInput {
 export type EventUpdateInput = {
   ckv5qd5q93www01zd68ayb8af?: Maybe<ScheduleSliceUpdateManyInlineInput>;
   endTime?: Maybe<Scalars['DateTime']>;
+  maybe?: Maybe<Scalars['Boolean']>;
   startTime?: Maybe<Scalars['DateTime']>;
   subtitle?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -1135,6 +1143,7 @@ export type EventUpdateManyInlineInput = {
 
 export type EventUpdateManyInput = {
   endTime?: Maybe<Scalars['DateTime']>;
+  maybe?: Maybe<Scalars['Boolean']>;
   startTime?: Maybe<Scalars['DateTime']>;
   subtitle?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -1243,6 +1252,9 @@ export type EventWhereInput = {
   id_not_starts_with?: Maybe<Scalars['ID']>;
   /** All values starting with the given string. */
   id_starts_with?: Maybe<Scalars['ID']>;
+  maybe?: Maybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  maybe_not?: Maybe<Scalars['Boolean']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
@@ -10970,13 +10982,13 @@ export type PageQueryVariables = Exact<{
 }>;
 
 
-export type PageQuery = { __typename?: 'Query', page?: { __typename?: 'Page', title?: string | null | undefined, slug: string, slices: Array<{ __typename?: 'HeroSlice' } | { __typename?: 'LiveSlice', id: string, title?: string | null | undefined, embed?: string | null | undefined } | { __typename?: 'NavbarMatter', id: string, logo?: { __typename?: 'Asset', url: string } | null | undefined, items: Array<{ __typename?: 'Page', id: string, slug: string, title?: string | null | undefined }> } | { __typename?: 'QuestionSlice', id: string, title?: string | null | undefined } | { __typename?: 'ScheduleSlice', id: string, title?: string | null | undefined, events: Array<{ __typename?: 'Event', id: string, title?: string | null | undefined, subtitle?: string | null | undefined, startTime?: any | null | undefined, endTime?: any | null | undefined }> } | { __typename?: 'SeoSlice', id: string, title?: string | null | undefined, images: Array<{ __typename?: 'Asset', id: string, height?: number | null | undefined, width?: number | null | undefined, url: string }> } | { __typename?: 'SpacerAtom', id: string, height?: number | null | undefined } | { __typename?: 'SpeakersSlice', id: string, subtitle?: string | null | undefined, title?: string | null | undefined, speakers: Array<{ __typename?: 'Speaker', id: string, name?: string | null | undefined, location?: string | null | undefined, image?: { __typename?: 'Asset', url: string, width?: number | null | undefined, height?: number | null | undefined } | null | undefined }> } | { __typename?: 'ThemeSlice', id: string, embed?: string | null | undefined, title?: string | null | undefined, subtitle?: string | null | undefined }> } | null | undefined };
+export type PageQuery = { __typename?: 'Query', page?: { __typename?: 'Page', title?: string | null | undefined, slug: string, slices: Array<{ __typename?: 'HeroSlice' } | { __typename?: 'LiveSlice', id: string, title?: string | null | undefined, embed?: string | null | undefined } | { __typename?: 'NavbarMatter', id: string, logo?: { __typename?: 'Asset', url: string } | null | undefined, items: Array<{ __typename?: 'Page', id: string, slug: string, title?: string | null | undefined }> } | { __typename?: 'QuestionSlice', id: string, title?: string | null | undefined } | { __typename?: 'ScheduleSlice', id: string, title?: string | null | undefined, events: Array<{ __typename?: 'Event', id: string, title?: string | null | undefined, subtitle?: string | null | undefined, startTime?: any | null | undefined, endTime?: any | null | undefined, maybe?: boolean | null | undefined }> } | { __typename?: 'SeoSlice', id: string, title?: string | null | undefined, images: Array<{ __typename?: 'Asset', id: string, height?: number | null | undefined, width?: number | null | undefined, url: string }> } | { __typename?: 'SpacerAtom', id: string, height?: number | null | undefined } | { __typename?: 'SpeakersSlice', id: string, subtitle?: string | null | undefined, title?: string | null | undefined, speakers: Array<{ __typename?: 'Speaker', id: string, name?: string | null | undefined, location?: string | null | undefined, image?: { __typename?: 'Asset', url: string, width?: number | null | undefined, height?: number | null | undefined } | null | undefined }> } | { __typename?: 'ThemeSlice', id: string, embed?: string | null | undefined, title?: string | null | undefined, subtitle?: string | null | undefined }> } | null | undefined };
 
 export type LiveFragment = { __typename?: 'LiveSlice', id: string, title?: string | null | undefined, embed?: string | null | undefined };
 
 export type QuestionFragment = { __typename?: 'QuestionSlice', id: string, title?: string | null | undefined };
 
-export type ScheduleFragment = { __typename?: 'ScheduleSlice', id: string, title?: string | null | undefined, events: Array<{ __typename?: 'Event', id: string, title?: string | null | undefined, subtitle?: string | null | undefined, startTime?: any | null | undefined, endTime?: any | null | undefined }> };
+export type ScheduleFragment = { __typename?: 'ScheduleSlice', id: string, title?: string | null | undefined, events: Array<{ __typename?: 'Event', id: string, title?: string | null | undefined, subtitle?: string | null | undefined, startTime?: any | null | undefined, endTime?: any | null | undefined, maybe?: boolean | null | undefined }> };
 
 export type SeoFragment = { __typename?: 'SeoSlice', id: string, title?: string | null | undefined, images: Array<{ __typename?: 'Asset', id: string, height?: number | null | undefined, width?: number | null | undefined, url: string }> };
 
@@ -11028,6 +11040,7 @@ export const ScheduleFragmentDoc = gql`
     subtitle
     startTime
     endTime
+    maybe
   }
 }
     `;
