@@ -142,15 +142,6 @@ export const ScheduleItem: FunctionComponent<ScheduleItemProps> = ({
     };
   }, [diff]);
 
-  console.log({
-    diff,
-    isBetween,
-    isSoon,
-    endTime,
-    fromNow,
-    next: dayjs(item?.startTime).diff(dayjs(), 'seconds'),
-  });
-
   const getDiff = () => {
     setDiff(dayjs(item?.startTime).diff(dayjs(), 'minutes'));
   };
