@@ -120,7 +120,7 @@ export const ScheduleItem: FunctionComponent<ScheduleItemProps> = ({
   data: [item, idx, arr],
 }) => {
   const [diff, setDiff] = useState(
-    dayjs(item?.startTime).diff(dayjs(), 'minutes')
+    dayjs(item?.startTime).diff(dayjs(), 'minute')
   );
 
   const { isBetween, isSoon, endTime, fromNow } = React.useMemo(() => {
@@ -128,7 +128,10 @@ export const ScheduleItem: FunctionComponent<ScheduleItemProps> = ({
 
     const endTime = item?.endTime || nextEvent?.startTime;
 
-    const isBetween = dayjs().isBetween(item?.startTime, endTime);
+    const isBetween = dayjs().isBetween(
+      dayjs(item?.startTime).add(1, 'minute'),
+      endTime
+    );
 
     const isSoon = diff > 0 && diff < 60;
 
@@ -142,30 +145,26 @@ export const ScheduleItem: FunctionComponent<ScheduleItemProps> = ({
     };
   }, [diff]);
 
+  console.log({
+    diff,
+    isBetween,
+    isSoon,
+    endTime,
+    fromNow,
+  });
+
   const getDiff = () => {
     setDiff(dayjs(item?.startTime).diff(dayjs(), 'minutes'));
   };
 
   useEffect(() => {
-    let timeout: any;
-    let timer: any;
-    if (isSoon || isBetween) {
-      timeout = setInterval(() => {
-        getDiff();
-      }, 1000);
-    } else {
-      const startsIn = dayjs(item?.startTime).diff(dayjs(), 'seconds') + 1;
-      if (startsIn > 0) {
-        timer = setTimeout(() => {
-          getDiff();
-        }, startsIn);
-      }
-    }
+    let timeout = setInterval(() => {
+      getDiff();
+    }, 1000);
     return () => {
       clearInterval(timeout);
-      clearTimeout(timer);
     };
-  }, [isSoon, isBetween]);
+  }, [isBetween, diff]);
 
   return (
     <div
