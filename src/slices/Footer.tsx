@@ -8,7 +8,8 @@ interface FooterSliceProps {}
 const navigation = {
   pages: [
     { name: 'Home', href: '/' },
-    { name: 'Live Stream', href: '/live' },
+    // { name: 'Live Stream', href: '/live' },
+    { name: 'Media Archive', href: '/archive' },
     { name: 'Schedule', href: '/schedule' },
     { name: 'Speakers', href: '/#speakers' },
   ],
